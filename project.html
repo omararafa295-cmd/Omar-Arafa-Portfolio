@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Omar Arafa</title>
+    <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
+    <script>
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'dark');
+        }
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
+        if (!localStorage.getItem('site-color')) {
+            localStorage.setItem('site-color', 'blue');
+        }
+        document.documentElement.setAttribute('data-color', localStorage.getItem('site-color'));
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="grain">
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress"></div>
+    
+    <!-- Navbar (Full version) -->
+    <nav id="navbar" class="scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="images/logo.png" alt="OA" class="my-custom-logo">
+                <span class="logo-name">Omar Arafa<span class="accent-dot">.</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <a href="CV.pdf" download class="btn-nav">Resume <i class="fas fa-arrow-down"></i></a>
+                <button id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section project-page-layout">
+        <!-- Back Button -->
+        <a href="index.html#projects" class="back-btn hidden-fade"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        
+        <!-- Project Header -->
+        <div class="project-page-header hidden-fade">
+            <h1 id="page-title" class="space-font">Project Title</h1>
+            <div id="page-tags" class="skill-tags justify-center"></div>
+            <p id="page-desc" class="project-page-desc">Description goes here...</p>
+            <div id="page-links" class="modal-action-links justify-center"></div>
+        </div>
+
+        <div class="project-page-content">
+            <!-- Features Section (Centered Grid) -->
+            <div class="project-features-section hidden-slide-up">
+                <h3 class="section-subtitle">Key Features</h3>
+                <div id="page-features" class="features-grid">
+                    <!-- Feature cards will be injected here -->
+                </div>
+            </div>
+            
+            
+            <!-- Right: Gallery (Bento Grid) -->
+            <div id="page-gallery" class="project-gallery-grid hidden-slide-up">
+                <!-- Images will be injected here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Theme Customizer -->
+    <div class="theme-customizer" id="theme-customizer">
+        <div class="customizer-toggle" id="customizer-toggle">
+            <i class="fas fa-palette"></i>
+        </div>
+        <div class="color-options">
+            <div class="color-btn color-red active" data-color="red" title="Default Red"></div>
+            <div class="color-btn color-blue" data-color="blue" title="Ocean Blue"></div>
+            <div class="color-btn color-green" data-color="green" title="Hacker Green"></div>
+            <div class="color-btn color-purple" data-color="purple" title="Cyberpunk Purple"></div>
+            <div class="color-btn color-orange" data-color="orange" title="Sunset Orange"></div>
+        </div>
+    </div>
+
+    <footer class="premium-footer">
+        <div class="footer-cta hidden-slide-up">
+            <p class="footer-subtitle">Ready to build something amazing?</p>
+            <h2 class="footer-title">LET'S WORK<br>TOGETHER</h2>
+            <a href="mailto:omararafa294@gmail.com" class="btn btn-primary footer-btn">Say Hello <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="footer-bottom hidden-fade">
+            <div class="footer-socials">
+                <a href="https://github.com/omararafa295-cmd" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/omar-arafa-6a1504358/" target="_blank">LinkedIn</a>
+                <a href="mailto:omararafa294@gmail.com">Email</a>
+                <a href="https://wa.me/201205139948" target="_blank">WhatsApp</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 Designed & Built by Omar Mounir Arafa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

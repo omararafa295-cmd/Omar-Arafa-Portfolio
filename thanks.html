@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Sent | Omar Arafa</title>
+    <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
+    <script>
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'dark');
+        }
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
+        if (!localStorage.getItem('site-color')) {
+            localStorage.setItem('site-color', 'blue');
+        }
+        document.documentElement.setAttribute('data-color', localStorage.getItem('site-color'));
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="grain">
+    <nav id="navbar" class="scrolled">
+        <div class="nav-container">
+            <a href="index.html#home" class="logo-container">
+                <img src="images/logo.png" alt="OA" class="my-custom-logo">
+                <span class="logo-name">Omar Arafa<span class="accent-dot">.</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <a href="CV.pdf" download class="btn-nav">Resume <i class="fas fa-arrow-down"></i></a>
+                <button id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section thanks-page">
+        <section class="thanks-card hidden-fade">
+            <div class="thanks-icon">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <p class="subtitle">Message sent</p>
+            <h1 class="space-font">Thank you<span class="accent-dot">.</span></h1>
+            <p class="thanks-copy">Your message has been sent successfully. I will read it and get back to you as soon as possible.</p>
+            <div class="modal-action-links justify-center">
+                <a href="index.html#contact" class="modal-btn secondary"><i class="fas fa-arrow-left"></i> Back to Contact</a>
+                <a href="index.html#projects" class="modal-btn primary"><i class="fas fa-folder-open"></i> View Projects</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
