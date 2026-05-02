@@ -2,7 +2,7 @@
 
 Welcome to the repository of my interactive personal portfolio! Built from scratch to showcase my skills in Software Engineering, Web Development, and Hardware Control Systems.
 
-🔗 **[Live Demo](https://omar-arafa.github.io/Omar-Arafa-Portfolio/)** 
+🔗 **[Live Demo](https://omararafa295-cmd.github.io/Omar-Arafa-Portfolio/index.html)** 
 
 ---
 
@@ -48,5 +48,5 @@ This project uses pure HTML, CSS, and JS. No build tools or package managers are
 ---
 
 ## 📬 Contact & Connect
-- **LinkedIn**: Omar Arafa
+- **LinkedIn**: www.linkedin.com/in/omar-arafa-6a1504358
 - **Email**: omararafa294@gmail.com
