@@ -436,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (project.images && project.images.length > 0) {
                 // ناخد أول 3 صور للمعاينة جوه الفولدر ونعكسهم عشان الطبقات (z-index)
                 const previewImages = project.images.slice(0, 3).reverse().map((img, index) => {
-                    return `<img src="${img}" alt="Preview" class="folder-preview-img stack-${index}">`;
+                    return `<img src="${img}" alt="Preview" class="folder-preview-img stack-${index}" loading="lazy">`;
                 }).join('');
                 
                 galleryHtml = `
