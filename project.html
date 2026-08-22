@@ -1,120 +1,104 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details | Omar Arafa</title>
-    <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
-    <script>
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'dark');
-        }
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
-        if (!localStorage.getItem('site-color')) {
-            localStorage.setItem('site-color', 'blue');
-        }
-        document.documentElement.setAttribute('data-color', localStorage.getItem('site-color'));
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050608">
+  <meta name="description" content="Project case study by Omar Arafa.">
+  <title>Project Case Study — Omar Arafa</title>
+  <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="grain">
-    <!-- Reading Progress Bar -->
-    <div id="reading-progress"></div>
-    
-    <!-- Navbar (Full version) -->
-    <nav id="navbar" class="scrolled">
-        <div class="nav-container">
-            <a href="index.html" class="logo-container">
-                <img src="images/logo.png" alt="OA" class="my-custom-logo">
-                <span class="logo-name">Omar Arafa<span class="accent-dot">.</span></span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <a href="CV.pdf" download class="btn-nav">Resume <i class="fas fa-arrow-down"></i></a>
-                <button id="theme-toggle" aria-label="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-            </div>
-        </div>
+<body class="is-loading">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-aura" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <div id="loader" class="loader" role="status" aria-label="Loading project case study">
+    <div class="loader-grid" aria-hidden="true"></div>
+    <img src="images/logo.png" alt="Omar Arafa logo" class="loader-logo">
+    <div class="loader-copy"><span>CASE STUDY / 2026</span><span id="loader-count">00</span></div>
+    <div class="loader-line"><span></span></div>
+  </div>
+
+  <header class="site-header scrolled" id="site-header">
+    <a class="brand" href="index.html" aria-label="Omar Arafa — Home">
+      <span class="brand-mark"><img src="images/logo.png" alt=""></span>
+      <span class="brand-name">OMAR ARAFA</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#stack">Stack</a>
+      <a href="index.html#journey">Journey</a>
+      <a href="index.html#contact">Contact</a>
     </nav>
+    <div class="header-actions">
+      <a class="availability" href="mailto:omararafa294@gmail.com"><i></i> Available for opportunities</a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" aria-hidden="true">
+      <nav aria-label="Mobile navigation">
+        <a href="index.html"><small>01</small> Home</a>
+        <a href="index.html#about"><small>02</small> About</a>
+        <a href="index.html#work"><small>03</small> Work</a>
+        <a href="index.html#stack"><small>04</small> Stack</a>
+        <a href="index.html#contact"><small>05</small> Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="section project-page-layout">
-        <!-- Back Button -->
-        <a href="index.html#projects" class="back-btn hidden-fade"><i class="fas fa-arrow-left"></i> Back to Projects</a>
-        
-        <!-- Project Header -->
-        <div class="project-page-header hidden-fade">
-            <h1 id="page-title" class="space-font">Project Title</h1>
-            <div id="page-tags" class="skill-tags justify-center"></div>
-            <p id="page-desc" class="project-page-desc">Description goes here...</p>
-            <div id="page-links" class="modal-action-links justify-center"></div>
-        </div>
-
-        <div class="project-page-content">
-            <!-- Features Section (Centered Grid) -->
-            <div class="project-features-section hidden-slide-up">
-                <h3 class="section-subtitle">Key Features</h3>
-                <div id="page-features" class="features-grid">
-                    <!-- Feature cards will be injected here -->
-                </div>
-            </div>
-            
-            
-            <!-- Right: Gallery (Bento Grid) -->
-            <div id="page-gallery" class="project-gallery-grid hidden-slide-up">
-                <!-- Images will be injected here -->
-            </div>
-        </div>
+  <main class="inner-page" id="project-page">
+    <section class="project-hero">
+      <img id="project-hero-image" class="project-hero-bg" src="images/x3.png" alt="Project interface">
+      <div class="project-hero-content" data-reveal>
+        <a class="back-link" href="index.html#work">← Back to selected work</a>
+        <p id="project-type" class="eyebrow">E-COMMERCE / FULL-STACK</p>
+        <h1 id="project-title">XERO OFFICE<br>E-COMMERCE</h1>
+        <p id="project-description" class="project-hero-desc">A comprehensive commerce platform for printers and toners.</p>
+        <div id="project-tags" class="project-tags"></div>
+      </div>
     </section>
 
-    <!-- Theme Customizer -->
-    <div class="theme-customizer" id="theme-customizer">
-        <div class="customizer-toggle" id="customizer-toggle">
-            <i class="fas fa-palette"></i>
+    <section class="detail-layout">
+      <div class="detail-overview" data-reveal>
+        <div>
+          <p class="eyebrow">THE BUILD</p>
+          <h2>KEY<br>CAPABILITIES.</h2>
+          <div class="project-actions">
+            <a id="project-github" class="button button-blue" href="https://github.com/omararafa295-cmd" target="_blank" rel="noreferrer">View source <span>↗</span></a>
+            <a class="button button-outline" href="index.html#contact">Discuss a project <span>↗</span></a>
+          </div>
         </div>
-        <div class="color-options">
-            <div class="color-btn color-red active" data-color="red" title="Default Red"></div>
-            <div class="color-btn color-blue" data-color="blue" title="Ocean Blue"></div>
-            <div class="color-btn color-green" data-color="green" title="Hacker Green"></div>
-            <div class="color-btn color-purple" data-color="purple" title="Cyberpunk Purple"></div>
-            <div class="color-btn color-orange" data-color="orange" title="Sunset Orange"></div>
-        </div>
+        <div id="project-features" class="features-list"></div>
+      </div>
+
+      <div class="gallery-heading" data-reveal>
+        <div><p class="eyebrow">PRODUCT VIEWS</p><h2>INTERFACE<br>GALLERY.</h2></div>
+        <p>A closer look at the screens, flows, and finished product experience.</p>
+      </div>
+      <div id="project-gallery" class="gallery-grid" data-reveal></div>
+    </section>
+
+    <a id="next-project" class="next-project" href="project.html?id=pacman">
+      <span>NEXT CASE STUDY</span>
+      <strong><b id="next-project-title">PACMAN SEARCH</b><i>↗</i></strong>
+    </a>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="index.html"><img src="images/logo.png" alt="Omar Arafa"><span>OMAR ARAFA</span></a>
+    <div class="footer-links">
+      <a href="https://github.com/omararafa295-cmd" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/omar-arafa-6a1504358/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+      <a href="mailto:omararafa294@gmail.com">Email ↗</a>
     </div>
+    <p>© <span id="year">2026</span> Omar Arafa. Designed & engineered with intent.</p>
+  </footer>
 
-    <footer class="premium-footer">
-        <div class="footer-cta hidden-slide-up">
-            <p class="footer-subtitle">Ready to build something amazing?</p>
-            <h2 class="footer-title">LET'S WORK<br>TOGETHER</h2>
-            <a href="mailto:omararafa294@gmail.com" class="btn btn-primary footer-btn">Say Hello <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="footer-bottom hidden-fade">
-            <div class="footer-socials">
-                <a href="https://github.com/omararafa295-cmd" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/omar-arafa-6a1504358/" target="_blank">LinkedIn</a>
-                <a href="mailto:omararafa294@gmail.com">Email</a>
-                <a href="https://wa.me/201205139948" target="_blank">WhatsApp</a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 Designed & Built by Omar Mounir Arafa</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,52 +1,44 @@
-# 🚀 Omar Arafa - Personal Portfolio
+# Omar Arafa — Portfolio
 
-Welcome to the repository of my interactive personal portfolio! Built from scratch to showcase my skills in Software Engineering, Web Development, and Hardware Control Systems.
+A cinematic, responsive developer portfolio for **Omar Arafa**, a Full-Stack PHP & Laravel developer and Computer & Systems Engineering student.
 
-🔗 **[Live Demo](https://omararafa295-cmd.github.io/Omar-Arafa-Portfolio/index.html)** 
+🔗 **[Live portfolio](https://omararafa295-cmd.github.io/Omar-Arafa-Portfolio/)**
 
----
+## Highlights
 
-## ✨ Key Features
+- Premium near-black and electric-blue visual system
+- Branded OA intro sequence and logo-led hero
+- Responsive cinematic portrait composition
+- Selected work presented as detailed case studies
+- Dynamic project galleries with fullscreen previews
+- Skills, services, education, and experience sections
+- Accessible mobile navigation and reduced-motion support
+- Contact form, downloadable résumé, and social links
+- Optimized social sharing card and metadata
 
-- **Custom Theme Builder**: Toggle between Dark/Light modes and choose from 5 distinct color accents (Ocean Blue, Hacker Green, Cyberpunk Purple, Sunset Orange, and Default Red).
-- **Interactive 3D Folders**: Unique, tactile 3D folder galleries to view project screenshots.
-- **Cinematic Animations**: Premium loading sequence, smooth scrolling, and scroll-triggered reveals.
-- **Performance Optimized**: Built with Vanilla JS, utilizing `IntersectionObserver` and lazy loading for maximum speed.
-- **Fully Responsive**: Adapts perfectly to desktop, tablet, and mobile screens with touch-friendly interactions.
+## Featured projects
 
----
+- **Xero Office E-Commerce** — Laravel, Tailwind CSS, MySQL, Chart.js
+- **Pacman Search AI** — Python, DFS, BFS, A* search
+- **Laravel Blog** — Laravel, PHP, MySQL, Bootstrap
 
-## 🛠️ Tech Stack
+## Tech
 
-- **Markup & Style**: HTML5, CSS3 (Variables, Grid, Flexbox, Custom Animations)
-- **Scripting**: Vanilla JavaScript (ES6+)
-- **Smooth Scrolling**: Lenis
-- **Icons**: FontAwesome 6
+HTML5, CSS3, and Vanilla JavaScript. No build step is required for the GitHub Pages version.
 
----
+## Run locally
 
-## 🚀 Running Locally
+```bash
+git clone https://github.com/omararafa295-cmd/Omar-Arafa-Portfolio.git
+cd Omar-Arafa-Portfolio
+```
 
-This project uses pure HTML, CSS, and JS. No build tools or package managers are required!
+Open `index.html` in a browser or serve the directory with any static file server.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/omar-arafa/Omar-Arafa-Portfolio.git
-   ```
-2. Open the folder and double-click `index.html` to view it in your browser.
+## Contact
 
----
+- [LinkedIn](https://www.linkedin.com/in/omar-arafa-6a1504358/)
+- [GitHub](https://github.com/omararafa295-cmd)
+- [Email](mailto:omararafa294@gmail.com)
 
-## 📂 Project Structure
-
-- `/css` - Contains stylesheets (`style.css` for layout & UI, `animations.css` for keyframes).
-- `/js` - Contains `main.js` (UI logic, observers, 3D folder interactions, theme switcher).
-- `/images` -  images for projects, about section, and logo.
-- `index.html` - The main single-page portfolio layout.
-- `project.html` - Dynamic project details template.
-
----
-
-## 📬 Contact & Connect
-- **LinkedIn**: www.linkedin.com/in/omar-arafa-6a1504358
-- **Email**: omararafa294@gmail.com
+© 2026 Omar Arafa

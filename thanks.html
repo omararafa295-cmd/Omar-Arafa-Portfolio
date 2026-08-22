@@ -1,69 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Sent | Omar Arafa</title>
-    <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
-    <script>
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'dark');
-        }
-        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
-        if (!localStorage.getItem('site-color')) {
-            localStorage.setItem('site-color', 'blue');
-        }
-        document.documentElement.setAttribute('data-color', localStorage.getItem('site-color'));
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050608">
+  <title>Message Sent — Omar Arafa</title>
+  <link rel="icon" type="image/jpeg" href="images/badge.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="grain">
-    <nav id="navbar" class="scrolled">
-        <div class="nav-container">
-            <a href="index.html#home" class="logo-container">
-                <img src="images/logo.png" alt="OA" class="my-custom-logo">
-                <span class="logo-name">Omar Arafa<span class="accent-dot">.</span></span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <div class="nav-controls">
-                <a href="CV.pdf" download class="btn-nav">Resume <i class="fas fa-arrow-down"></i></a>
-                <button id="theme-toggle" aria-label="Toggle Theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <div class="hamburger">
-                    <div class="line1"></div>
-                    <div class="line2"></div>
-                    <div class="line3"></div>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="site-header scrolled" id="site-header">
+    <a class="brand" href="index.html" aria-label="Omar Arafa — Home">
+      <span class="brand-mark"><img src="images/logo.png" alt=""></span>
+      <span class="brand-name">OMAR ARAFA</span>
+    </a>
+    <a class="availability" href="mailto:omararafa294@gmail.com"><i></i> Available for opportunities</a>
+  </header>
 
-    <main class="section thanks-page">
-        <section class="thanks-card hidden-fade">
-            <div class="thanks-icon">
-                <i class="fas fa-paper-plane"></i>
-            </div>
-            <p class="subtitle">Message sent</p>
-            <h1 class="space-font">Thank you<span class="accent-dot">.</span></h1>
-            <p class="thanks-copy">Your message has been sent successfully. I will read it and get back to you as soon as possible.</p>
-            <div class="modal-action-links justify-center">
-                <a href="index.html#contact" class="modal-btn secondary"><i class="fas fa-arrow-left"></i> Back to Contact</a>
-                <a href="index.html#projects" class="modal-btn primary"><i class="fas fa-folder-open"></i> View Projects</a>
-            </div>
-        </section>
-    </main>
-
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="js/main.js"></script>
+  <main class="thanks-page">
+    <section class="thanks-card">
+      <img class="thanks-logo" src="images/logo.png" alt="Omar Arafa logo">
+      <p class="eyebrow">MESSAGE RECEIVED / THANK YOU</p>
+      <h1>LET'S MAKE IT<br><span>HAPPEN.</span></h1>
+      <p>Your message is on its way. I'll read it carefully and get back to you as soon as possible.</p>
+      <div class="thanks-actions">
+        <a class="button button-light" href="index.html">Back home <span>←</span></a>
+        <a class="button button-outline" href="index.html#work">View selected work <span>↗</span></a>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
