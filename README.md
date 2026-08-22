@@ -1,20 +1,24 @@
 # Omar Arafa — Portfolio
 
-A cinematic, responsive developer portfolio for **Omar Arafa**, a Full-Stack PHP & Laravel developer and Computer & Systems Engineering student.
+A premium, responsive developer portfolio for **Omar Arafa**, a Full-Stack PHP & Laravel developer and Computer & Systems Engineering student.
 
 🔗 **[Live portfolio](https://omararafa295-cmd.github.io/Omar-Arafa-Portfolio/)**
 
-## Highlights
+## Identity preserved
 
-- Premium near-black and electric-blue visual system
-- Branded OA intro sequence and logo-led hero
-- Responsive cinematic portrait composition
-- Selected work presented as detailed case studies
-- Dynamic project galleries with fullscreen previews
-- Skills, services, education, and experience sections
-- Accessible mobile navigation and reduced-motion support
-- Contact form, downloadable résumé, and social links
-- Optimized social sharing card and metadata
+- Original OA logo, typography, layout language, and project-card style
+- Persistent light and dark modes
+- Five selectable accent palettes: red, blue, green, purple, and orange
+- Original smooth scrolling, custom cursor, magnetic buttons, and card tilt
+
+## Creative upgrade
+
+- Cinematic branded intro with live counter and system-style details
+- Layered hero composition with logo watermark, availability status, and proof points
+- Scanning portrait frame and subtle motion effects
+- New services section focused on web apps, backend systems, and dashboards
+- Visual previews for featured projects
+- Improved metadata, social sharing, responsive behavior, and reduced-motion support
 
 ## Featured projects
 
