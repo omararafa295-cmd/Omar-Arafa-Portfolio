@@ -764,7 +764,6 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
 }
 
 @media screen and (max-width: 768px) {
-    body { overflow-x: hidden; }
         .section { padding: 80px 5%; }
         .section-title h2 { font-size: 2.2rem; white-space: normal; line-height: 1.2; margin-right: 15px; }
         .hero-content h1 { font-size: clamp(40px, 10vw, 60px); }
