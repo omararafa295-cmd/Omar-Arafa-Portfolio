@@ -1845,18 +1845,25 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .laptop-frame { padding: 7px; border-radius: 13px 13px 5px 5px; }
     .laptop-toolbar { grid-template-columns: auto 1fr auto; gap: 8px; padding: 7px 8px; font-size: .39rem; }
     .laptop-toolbar > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
-    .laptop-screen-content { grid-template-columns: minmax(0,1fr) 88px; gap: 8px; padding: 12px; }
-    .screen-copy-main h3 { margin: 8px 0 9px; font-size: clamp(1.55rem, 8.4vw, 2.45rem); }
-    .screen-copy-main p { font-size: .52rem; line-height: 1.45; }
-    .screen-kicker { font-size: .4rem; }
-    .screen-actions { gap: 4px; margin-top: 9px; }
-    .screen-actions span { padding: 3px 5px; font-size: .34rem; }
+    .laptop-screen-content {
+        min-height: 0;
+        grid-template-columns: minmax(0,1fr) 76px;
+        gap: 7px;
+        align-items: center;
+        padding: 8px 9px 7px;
+    }
+    .screen-copy-main { min-width: 0; }
+    .screen-copy-main h3 { margin: 6px 0 7px; font-size: clamp(1.2rem, 5.5vw, 1.35rem); line-height: .82; }
+    .screen-copy-main p { max-width: none; font-size: .41rem; line-height: 1.28; }
+    .screen-kicker { font-size: .34rem; letter-spacing: .12em; }
+    .screen-actions { gap: 3px; margin-top: 6px; }
+    .screen-actions span { padding: 2px 4px; font-size: .27rem; line-height: 1.2; }
     .screen-profile-card { border-radius: 5px; }
-    .screen-profile-card > div { padding: 6px; }
-    .screen-profile-card small { font-size: .28rem; }
-    .screen-profile-card strong { margin-top: 2px; font-size: .62rem; line-height: 1; }
-    .screen-profile-card span { font-size: .28rem; }
-    .laptop-statusbar { padding: 5px 7px; font-size: .3rem; }
+    .screen-profile-card > div { padding: 4px 5px 5px; }
+    .screen-profile-card small { font-size: .23rem; }
+    .screen-profile-card strong { margin: 1px 0; font-size: .54rem; line-height: 1; }
+    .screen-profile-card span { font-size: .23rem; }
+    .laptop-statusbar { padding: 4px 7px; font-size: .25rem; line-height: 1.2; }
     .laptop-screen::after { display: none; }
     .laptop-screen-grid { opacity: .12; -webkit-mask-image: none; mask-image: none; }
     .cinematic-ambient { filter: blur(22px); }
