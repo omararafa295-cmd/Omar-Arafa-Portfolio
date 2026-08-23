@@ -687,6 +687,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxCounter = lightbox.querySelector('.case-lightbox-counter');
     let lightboxIndex = 0;
     let touchStartX = 0;
+    let touchStartY = 0;
+    let singleTouchSwipe = false;
     let lightboxHistoryActive = false;
 
     const updateLightbox = index => {
@@ -727,10 +729,33 @@ document.addEventListener("DOMContentLoaded", () => {
     lightbox.querySelector('.case-lightbox-prev').addEventListener('click', () => updateLightbox(lightboxIndex - 1));
     lightbox.querySelector('.case-lightbox-next').addEventListener('click', () => updateLightbox(lightboxIndex + 1));
     lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
-    lightbox.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchstart', event => {
+        singleTouchSwipe = event.touches.length === 1;
+
+        if (singleTouchSwipe) {
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        }
+    }, { passive: true });
+    lightbox.addEventListener('touchmove', event => {
+        // Pinch zoom uses two fingers, so it must never trigger gallery navigation.
+        if (event.touches.length > 1) singleTouchSwipe = false;
+    }, { passive: true });
     lightbox.addEventListener('touchend', event => {
-        const distance = event.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(distance) > 45) updateLightbox(lightboxIndex + (distance < 0 ? 1 : -1));
+        if (!singleTouchSwipe || event.touches.length !== 0) {
+            singleTouchSwipe = false;
+            return;
+        }
+
+        const distanceX = event.changedTouches[0].clientX - touchStartX;
+        const distanceY = event.changedTouches[0].clientY - touchStartY;
+
+        // Navigate only after a deliberate horizontal swipe with one finger.
+        if (Math.abs(distanceX) > 55 && Math.abs(distanceX) > Math.abs(distanceY) * 1.25) {
+            updateLightbox(lightboxIndex + (distanceX < 0 ? 1 : -1));
+        }
+
+        singleTouchSwipe = false;
     }, { passive: true });
     document.addEventListener('keydown', event => {
         if (!lightbox.classList.contains('is-open')) return;
