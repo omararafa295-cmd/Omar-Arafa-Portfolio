@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=20260823-13">
     <link rel="stylesheet" href="css/animations.css?v=20260823-7">
+    <link rel="stylesheet" href="css/project-case-study.css?v=20260823-1">
 </head>
 <body class="grain">
     <!-- Reading Progress Bar -->
@@ -52,34 +53,91 @@
         </div>
     </nav>
 
-    <section class="section project-page-layout">
-        <!-- Back Button -->
-        <a href="projects.html" class="back-btn hidden-fade"><i class="fas fa-arrow-left"></i> Back to All Projects</a>
-        
-        <!-- Project Header -->
-        <div class="project-page-header hidden-fade">
-            <h1 id="page-title" class="space-font">Project Title</h1>
-            <div id="page-tags" class="skill-tags justify-center"></div>
-            <p id="page-desc" class="project-page-desc">Description goes here...</p>
-            <div id="page-links" class="modal-action-links justify-center"></div>
-        </div>
+    <main class="case-study-page">
+        <section class="case-hero" aria-labelledby="page-title">
+            <a href="projects.html" class="case-back hidden-fade"><i class="fas fa-arrow-left"></i> All Projects</a>
 
-        <div class="project-page-content">
-            <!-- Features Section (Centered Grid) -->
-            <div class="project-features-section hidden-slide-up">
-                <h3 class="section-subtitle">Key Features</h3>
-                <div id="page-features" class="features-grid">
-                    <!-- Feature cards will be injected here -->
+            <div class="case-hero-copy">
+                <div class="case-heading-block hidden-slide-left">
+                    <p class="case-kicker"><span id="case-project-index">01</span> / SELECTED CASE STUDY</p>
+                    <h1 id="page-title">Project Title</h1>
+                </div>
+
+                <div class="case-summary-block hidden-slide-right">
+                    <p id="page-desc">Description goes here...</p>
+                    <div id="page-tags" class="case-tags"></div>
+                    <div id="page-links" class="case-actions"></div>
                 </div>
             </div>
-            
-            
-            <!-- Right: Gallery (Bento Grid) -->
-            <div id="page-gallery" class="project-gallery-grid hidden-slide-up">
-                <!-- Images will be injected here -->
+
+            <button class="case-hero-media hidden-slide-up" id="case-hero-open" type="button" aria-label="Open project gallery">
+                <img id="case-hero-image" src="" alt="">
+                <span class="case-media-grid" aria-hidden="true"></span>
+                <span class="case-media-topline">
+                    <span><i></i><i></i><i></i></span>
+                    <span id="case-media-label">PROJECT / OVERVIEW</span>
+                    <span>EXPAND <i class="fas fa-up-right-and-down-left-from-center"></i></span>
+                </span>
+                <span class="case-media-caption">
+                    <span id="case-media-type">DIGITAL PRODUCT</span>
+                    <span>SCROLL TO EXPLORE <i class="fas fa-arrow-down"></i></span>
+                </span>
+            </button>
+
+            <dl class="case-meta hidden-slide-up" id="page-meta"></dl>
+        </section>
+
+        <section class="case-section case-story" id="overview">
+            <header class="case-section-heading hidden-fade">
+                <p>01 / PROJECT STORY</p>
+                <h2>From brief<br>to working product<span>.</span></h2>
+            </header>
+            <div class="case-story-grid" id="page-story"></div>
+        </section>
+
+        <section class="case-section case-features" id="features">
+            <header class="case-section-heading case-section-heading-row hidden-fade">
+                <div>
+                    <p>02 / CAPABILITIES</p>
+                    <h2>Built into the<br>experience<span>.</span></h2>
+                </div>
+                <p class="case-section-note">Every feature solves a real product need — not decoration.</p>
+            </header>
+            <div class="case-feature-list" id="page-features"></div>
+        </section>
+
+        <section class="case-section case-gallery" id="gallery">
+            <header class="case-section-heading case-section-heading-row hidden-fade">
+                <div>
+                    <p>03 / VISUAL WALKTHROUGH</p>
+                    <h2>Inside the<br>product<span>.</span></h2>
+                </div>
+                <p class="case-section-note"><span id="case-gallery-total">00</span> selected screens. Tap any frame to inspect it.</p>
+            </header>
+
+            <div class="case-gallery-shell hidden-slide-up">
+                <div class="case-gallery-viewer">
+                    <div class="case-gallery-toolbar">
+                        <span class="case-window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span id="case-gallery-label">PROJECT VIEW / 01</span>
+                        <span id="case-gallery-counter">01 / 01</span>
+                    </div>
+                    <button class="case-gallery-main" id="case-gallery-open" type="button" aria-label="Open current image fullscreen">
+                        <img id="case-gallery-image" src="" alt="">
+                        <span class="case-gallery-expand"><i class="fas fa-expand"></i> Fullscreen</span>
+                    </button>
+                    <div class="case-gallery-controls">
+                        <p id="case-gallery-caption">Project overview</p>
+                        <div>
+                            <button id="case-gallery-prev" type="button" aria-label="Previous image"><i class="fas fa-arrow-left"></i></button>
+                            <button id="case-gallery-next" type="button" aria-label="Next image"><i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-gallery-thumbs" id="case-gallery-thumbs" aria-label="Project image thumbnails"></div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Theme Customizer -->
     <div class="theme-customizer" id="theme-customizer">
@@ -115,6 +173,6 @@
     </footer>
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="js/main.js?v=20260823-10"></script>
+    <script src="js/main.js?v=20260823-11"></script>
 </body>
 </html>
