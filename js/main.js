@@ -687,6 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxCounter = lightbox.querySelector('.case-lightbox-counter');
     let lightboxIndex = 0;
     let touchStartX = 0;
+    let lightboxHistoryActive = false;
 
     const updateLightbox = index => {
         if (!images.length) return;
@@ -698,20 +699,31 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     const openLightbox = index => {
         updateLightbox(index);
+        if (!lightbox.classList.contains('is-open')) {
+            history.pushState({ ...(history.state || {}), caseLightbox: true }, '', window.location.href);
+            lightboxHistoryActive = true;
+        }
         lightbox.classList.add('is-open');
         document.body.style.overflow = 'hidden';
         if (lenis) lenis.stop();
         lightbox.querySelector('.case-lightbox-close').focus();
     };
-    const closeLightbox = () => {
+    const closeLightbox = (fromHistory = false) => {
+        if (!lightbox.classList.contains('is-open')) return;
         lightbox.classList.remove('is-open');
         document.body.style.overflow = '';
         if (lenis) lenis.start();
+        if (lightboxHistoryActive && !fromHistory) {
+            lightboxHistoryActive = false;
+            history.back();
+        } else {
+            lightboxHistoryActive = false;
+        }
     };
 
     document.getElementById('case-hero-open').addEventListener('click', () => openLightbox(0));
     galleryMain.addEventListener('click', () => openLightbox(activeImage));
-    lightbox.querySelector('.case-lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.case-lightbox-close').addEventListener('click', () => closeLightbox());
     lightbox.querySelector('.case-lightbox-prev').addEventListener('click', () => updateLightbox(lightboxIndex - 1));
     lightbox.querySelector('.case-lightbox-next').addEventListener('click', () => updateLightbox(lightboxIndex + 1));
     lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
@@ -725,6 +737,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (event.key === 'Escape') closeLightbox();
         if (event.key === 'ArrowLeft') updateLightbox(lightboxIndex - 1);
         if (event.key === 'ArrowRight') updateLightbox(lightboxIndex + 1);
+    });
+    window.addEventListener('popstate', () => {
+        if (lightbox.classList.contains('is-open')) closeLightbox(true);
     });
 
     const nextProjectKey = projectKeys[(projectIndex + 1) % projectKeys.length];
