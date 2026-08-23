@@ -1010,15 +1010,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const mobileView = window.matchMedia('(max-width: 900px)');
-        const nativeMobileLaptop = window.innerWidth <= 768
-            && typeof CSS !== 'undefined'
-            && CSS.supports('animation-timeline: view()');
+        let gsapMobileLaptop = false;
         let ticking = false;
 
+        // Touch momentum can skip large parts of a direct scroll-to-progress mapping.
+        // A single scrubbed timeline keeps the whole mobile chapter in sequence and
+        // lets ScrollTrigger refresh its measurements when the viewport changes.
+        if (laptopScene && laptopSticky && laptopCamera && laptopLid && laptopScreen
+            && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            const laptopMedia = gsap.matchMedia();
+
+            laptopMedia.add('(max-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+                gsapMobileLaptop = true;
+                ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
+
+                const normalizer = ScrollTrigger.normalizeScroll({
+                    allowNestedScroll: true,
+                    lockAxis: true,
+                    momentum: (self) => Math.min(1.15, Math.max(0.45, Math.abs(self.velocityY) / 1600)),
+                    type: 'touch,wheel'
+                });
+
+                const screenFocus = () => {
+                    let offsetY = 0;
+                    let node = laptopScreen;
+                    while (node && node !== laptopCamera) {
+                        offsetY += node.offsetTop || 0;
+                        node = node.offsetParent;
+                    }
+
+                    const stickyHeight = Math.max(1, laptopSticky.offsetHeight);
+                    const stickyWidth = Math.max(1, laptopSticky.offsetWidth);
+                    const screenHeight = Math.max(1, laptopScreen.offsetHeight);
+                    const screenWidth = Math.max(1, laptopScreen.offsetWidth);
+                    const screenCenterY = offsetY + (screenHeight / 2);
+
+                    return {
+                        y: (laptopCamera.offsetHeight / 2) - screenCenterY,
+                        scale: clamp(Math.max(stickyWidth / screenWidth, stickyHeight / screenHeight) * 1.025, 3.7, 5.15)
+                    };
+                };
+
+                gsap.set(laptopCamera, {
+                    y: () => laptopSticky.offsetHeight * 0.16,
+                    scale: 0.62,
+                    transformOrigin: '50% 43%',
+                    force3D: true
+                });
+                gsap.set(laptopLid, { rotationX: 86, force3D: true });
+                gsap.set(laptopScreen, { opacity: 0.18 });
+                if (laptopContent) gsap.set(laptopContent, { opacity: 0.18 });
+                if (laptopCopy) gsap.set(laptopCopy, { opacity: 1, y: 0 });
+                if (laptopBlackout) gsap.set(laptopBlackout, { opacity: 0 });
+
+                const timeline = gsap.timeline({
+                    defaults: { ease: 'none' },
+                    scrollTrigger: {
+                        trigger: laptopScene,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                        fastScrollEnd: false
+                    }
+                });
+
+                timeline
+                    .to(laptopCamera, { y: 0, scale: 1, duration: 0.30, ease: 'power2.inOut' }, 0.05)
+                    .to(laptopLid, { rotationX: 0, duration: 0.30, ease: 'power2.inOut' }, 0.05)
+                    .to(laptopScreen, { opacity: 1, duration: 0.25 }, 0.08);
+
+                if (laptopCopy) timeline.to(laptopCopy, { opacity: 0, y: -28, duration: 0.17 }, 0.17);
+                if (laptopContent) timeline.to(laptopContent, { opacity: 1, duration: 0.14 }, 0.27);
+
+                timeline.to(laptopCamera, {
+                    y: () => screenFocus().y,
+                    scale: () => screenFocus().scale,
+                    duration: 0.31,
+                    ease: 'power1.inOut'
+                }, 0.60);
+
+                // Keep the screen rendered until the blackout covers it. Fading both at
+                // once caused the long empty purple frame seen in the phone recording.
+                if (laptopBlackout) timeline.to(laptopBlackout, { opacity: 1, duration: 0.07, ease: 'power2.in' }, 0.92);
+                timeline.to({}, { duration: 0.01 }, 0.99);
+
+                requestAnimationFrame(() => ScrollTrigger.refresh());
+
+                return () => {
+                    gsapMobileLaptop = false;
+                    if (normalizer) ScrollTrigger.normalizeScroll(false);
+                };
+            });
+        }
+
         const updateLaptop = (rect) => {
-            // Modern mobile Chrome runs this chapter entirely on a native view timeline.
-            // Keeping JavaScript out of the scrub removes event timing drift on touch scroll.
-            if (!laptopScene || !laptopCamera || reduceMotion.matches || nativeMobileLaptop) return;
+            if (!laptopScene || !laptopCamera || reduceMotion.matches || gsapMobileLaptop) return;
             const p = sceneProgress(laptopScene, rect, laptopSticky);
             const mobile = window.innerWidth <= 768;
             const open = smoothstep(mobile ? 0.06 : 0.04, mobile ? 0.36 : 0.34, p);
