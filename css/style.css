@@ -1843,7 +1843,7 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .premium-skill-card h3 { font-size: 1.85rem; }
     .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: clip; }
     .laptop-sticky { height: 100vh; height: 100svh; overflow: clip; }
-    .laptop-camera { width: min(97vw, 100%); }
+    .laptop-camera { width: min(97vw, 100%); transform-origin: 50% 43%; }
     .laptop-device { filter: none; }
     .laptop-frame { padding: 7px; border-radius: 13px 13px 5px 5px; }
     .laptop-toolbar { grid-template-columns: auto 1fr auto; gap: 8px; padding: 7px 8px; font-size: .39rem; }
