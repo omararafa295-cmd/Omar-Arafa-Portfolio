@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mobile laptop content QA</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #202124; color: #fff; font: 14px sans-serif; }
+    body { padding: 18px; }
+    main { display: flex; justify-content: center; align-items: flex-start; gap: 24px; }
+    figure { margin: 0; }
+    figcaption { margin-bottom: 8px; text-align: center; }
+    iframe { display: block; border: 0; background: #05060a; }
+    .wide iframe { width: 384px; height: 850px; }
+    .narrow iframe { width: 360px; height: 800px; }
+  </style>
+</head>
+<body>
+  <main>
+    <figure class="wide"><figcaption>384 × 850</figcaption><iframe title="384 mobile QA" src="index.html?qa=content-384"></iframe></figure>
+    <figure class="narrow"><figcaption>360 × 800</figcaption><iframe title="360 mobile QA" src="index.html?qa=content-360"></iframe></figure>
+  </main>
+</body>
+</html>
