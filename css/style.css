@@ -1853,10 +1853,10 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
         padding: 8px 9px 7px;
     }
     .screen-copy-main { min-width: 0; }
-    .screen-copy-main h3 { margin: 6px 0 7px; font-size: clamp(1.2rem, 5.5vw, 1.35rem); line-height: .82; }
-    .screen-copy-main p { max-width: none; font-size: .41rem; line-height: 1.28; }
+    .screen-copy-main h3 { margin: 5px 0 6px; font-size: clamp(1.16rem, 5.3vw, 1.32rem); line-height: .82; }
+    .screen-copy-main p { max-width: none; font-size: .39rem; line-height: 1.26; }
     .screen-kicker { font-size: .34rem; letter-spacing: .12em; }
-    .screen-actions { gap: 3px; margin-top: 6px; }
+    .screen-actions { gap: 3px; margin-top: 4px; }
     .screen-actions span { padding: 2px 4px; font-size: .27rem; line-height: 1.2; }
     .screen-profile-card { border-radius: 5px; }
     .screen-profile-card > div { padding: 4px 5px 5px; }
