@@ -1841,7 +1841,7 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .premium-skill-grid { grid-template-columns: 1fr; gap: 16px; }
     .premium-skill-card, .premium-skill-card:last-child { grid-column: auto; min-height: 0; padding: 24px 20px; }
     .premium-skill-card h3 { font-size: 1.85rem; }
-    .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: clip; touch-action: pan-y; }
+    /* A sticky element must not sit inside a clipped scrolling ancestor.\n       Keep the scene overflow visible so the sticky viewport stays pinned on mobile. */\n    .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: visible; touch-action: pan-y; }
     .laptop-sticky { height: 100vh; height: 100svh; overflow: clip; }
     .laptop-camera { width: min(94vw, 560px); transform-origin: 50% 43%; }
     .laptop-device { filter: none; }
