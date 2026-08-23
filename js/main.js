@@ -398,6 +398,22 @@ const projectsData = {
         github: "https://github.com/omararafa295-cmd/laravel-blog",
         demo: null
     },
+    'iqraa': {
+        title: "Iqraa Islamic PWA",
+        tags: ['<i class="fab fa-react"></i> React 19', 'Tailwind CSS', 'PWA', 'REST APIs'],
+        description: "A bilingual, mobile-first Islamic Progressive Web App that brings Quran reading and audio, smart search, prayer times, Qibla, adhkar, hadith, radio, Hijri calendar, bookmarks, and offline access into one polished experience.",
+        features: [
+            "Arabic and English interface with automatic RTL and LTR layout support.",
+            "Quran reading, smart Arabic search, bookmarks, last-reading persistence, and multiple tafsir sources.",
+            "Audio library with 14 reciters, a floating player, offline downloads, and resumable progress.",
+            "Prayer times, location-aware Qibla, adhkar, hadith, Quran radio, and a combined Hijri and Gregorian calendar.",
+            "Installable PWA with Service Worker caching, offline Quran data, and persistent settings.",
+            "Responsive glassmorphism interface built mobile-first with accessible light and dark themes."
+        ],
+        images: ['images/iqraa-showcase.webp'],
+        github: "https://github.com/omararafa295-cmd/iqraa-quran-app",
+        demo: "https://iqraa-app.vercel.app/"
+    },
    
 };
 
@@ -980,7 +996,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const mobile = window.innerWidth <= 768;
             const startScale = mobile ? 0.72 : 0.58;
             const openScale = mobile ? 0.28 : 0.42;
-            const zoomScale = mobile ? 3.75 : 5.65;
+            const zoomScale = mobile ? 2.15 : 1.35;
             const y = ((1 - open) * (mobile ? 18 : 23)) - (approach * (mobile ? 1 : 4));
             const scale = startScale + (open * openScale) + (approach * zoomScale);
 
