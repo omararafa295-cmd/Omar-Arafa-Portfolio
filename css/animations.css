@@ -211,6 +211,34 @@ body.intro-lock {
     }
 }
 
+/* Keep mobile scrolling compositor-friendly while preserving the core reveals. */
+@media screen and (max-width: 900px), (hover: none), (pointer: coarse) {
+    body::before {
+        animation: none;
+        opacity: 0.18;
+        background-size: 100% 100%;
+    }
+
+    .grain::after { display: none; }
+    .animated-img-container::before,
+    .animated-img-container::after,
+    .hero-profile-img,
+    .pulse-ring,
+    .portrait-scan-line,
+    .status-dot,
+    .folder-icon {
+        animation: none !important;
+    }
+
+    .animated-img-container::after { filter: blur(10px); }
+    #navbar,
+    .theme-customizer,
+    .customizer-toggle {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+}
+
 .hero::before,
 .hero::after {
     content: "";

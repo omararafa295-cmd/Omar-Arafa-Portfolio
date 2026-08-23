@@ -1,7 +1,11 @@
 // ================= Smooth Scrolling (Lenis) & Anchor Links =================
+const mobilePerformanceMode = () => window.matchMedia('(max-width: 900px), (hover: none), (pointer: coarse)').matches;
+const reducedMotionMode = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lenis; // عرفناها بره عشان نقدر نستخدمها في الناف بار
 document.addEventListener("DOMContentLoaded", () => {
-    if (typeof Lenis !== 'undefined') {
+    const canUseLenis = typeof Lenis !== 'undefined' && !mobilePerformanceMode() && !reducedMotionMode();
+
+    if (canUseLenis) {
         lenis = new Lenis({
             lerp: 0.08,
             direction: 'vertical',
@@ -14,50 +18,48 @@ document.addEventListener("DOMContentLoaded", () => {
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+    }
 
-        // تنعيم حركة الناف بار (Smooth Anchor Scrolling)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return; // تجاهل لو اللينك فاضي
+    // Desktop uses Lenis; touch devices use the browser's cheaper native smooth scroll.
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return; // تجاهل لو اللينك فاضي
 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault(); // نمنع القفزة المفاجئة
-                    const nav = document.getElementById('navbar');
-                    const navHeight = nav ? nav.offsetHeight : 0;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault(); // نمنع القفزة المفاجئة
+                const nav = document.getElementById('navbar');
+                const navHeight = nav ? nav.offsetHeight : 0;
 
-                    const rect = targetElement.getBoundingClientRect();
-                    const absoluteTop = window.scrollY + rect.top;
-                    const isTall = rect.height > (window.innerHeight * 0.8);
+                const rect = targetElement.getBoundingClientRect();
+                const absoluteTop = window.scrollY + rect.top;
+                const isTall = rect.height > (window.innerHeight * 0.8);
 
-                    // Mobile: align below navbar. Desktop: center short sections, top-align tall sections.
-                    if (typeof lenis !== 'undefined') {
-                        if (window.innerWidth < 768) {
+                // Mobile: align below navbar. Desktop: center short sections, top-align tall sections.
+                if (lenis) {
+                    if (window.innerWidth < 768) {
+                        lenis.scrollTo(targetElement, { offset: -(navHeight + 16), duration: 0.9 });
+                    } else {
+                        if (isTall) {
                             lenis.scrollTo(targetElement, { offset: -(navHeight + 16), duration: 0.9 });
                         } else {
-                            if (isTall) {
-                                // For long sections, align top (so content isn't pushed out of view)
-                                lenis.scrollTo(targetElement, { offset: -(navHeight + 16), duration: 0.9 });
-                            } else {
-                                const centerY = Math.max(0, absoluteTop + rect.height / 2 - window.innerHeight / 2);
-                                lenis.scrollTo(centerY, { duration: 0.9 });
-                            }
+                            const centerY = Math.max(0, absoluteTop + rect.height / 2 - window.innerHeight / 2);
+                            lenis.scrollTo(centerY, { duration: 0.9 });
                         }
-                    } else {
-                        // Fallback if Lenis isn't loaded
-                        let topPos;
-                        if (window.innerWidth < 768 || isTall) {
-                            topPos = absoluteTop - (navHeight + 16);
-                        } else {
-                            topPos = Math.max(0, absoluteTop + rect.height / 2 - window.innerHeight / 2);
-                        }
-                        window.scrollTo({ top: topPos, behavior: 'smooth' });
                     }
+                } else {
+                    let topPos;
+                    if (window.innerWidth < 768 || isTall) {
+                        topPos = absoluteTop - (navHeight + 16);
+                    } else {
+                        topPos = Math.max(0, absoluteTop + rect.height / 2 - window.innerHeight / 2);
+                    }
+                    window.scrollTo({ top: topPos, behavior: reducedMotionMode() ? 'auto' : 'smooth' });
                 }
-            });
+            }
         });
-    }
+    });
 });
 
 // ================= General UI Logic =================
@@ -84,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         const isBackNav = performance.getEntriesByType("navigation")[0]?.type === "back_forward";
-        const introDuration = reduceMotion ? 350 : 2850;
+        const introDuration = reduceMotion ? 350 : (mobilePerformanceMode() ? 1800 : 2850);
         const introCount = document.getElementById('intro-count');
         if (introCount) {
             const introStartedAt = performance.now();
@@ -211,18 +213,23 @@ window.addEventListener('beforeunload', () => {
 });
 
 // Navbar Scroll
+let navbarScrollTicking = false;
 window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    if (nav) {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            if(!window.location.href.includes('project.html')) {
-                nav.classList.remove('scrolled');
+    if (!navbarScrollTicking) {
+        navbarScrollTicking = true;
+        requestAnimationFrame(() => {
+            const nav = document.getElementById('navbar');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else if (!window.location.href.includes('project.html')) {
+                    nav.classList.remove('scrolled');
+                }
             }
-        }
+            navbarScrollTicking = false;
+        });
     }
-});
+}, { passive: true });
 
 // --- Typing Effect ---
 const typingTextElement = document.getElementById('typing-text');
@@ -273,13 +280,15 @@ window.addEventListener('load', () => setTimeout(runVisibilityCheck, 100));
 window.addEventListener('resize', runVisibilityCheck);
 if (typeof lenis !== 'undefined') setTimeout(runVisibilityCheck, 300);
 
-// Parallax
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('[data-parallax]').forEach(el => {
-        const speed = el.getAttribute('data-parallax') || 0.5;
-        el.style.transform = `translateY(${window.scrollY * speed}px)`;
-    });
-});
+// Parallax is intentionally desktop-only to keep touch scrolling on the compositor thread.
+if (!mobilePerformanceMode()) {
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('[data-parallax]').forEach(el => {
+            const speed = el.getAttribute('data-parallax') || 0.5;
+            el.style.transform = `translateY(${window.scrollY * speed}px)`;
+        });
+    }, { passive: true });
+}
 
     // ================= Custom Parallax for Projects Section =================
     document.addEventListener('DOMContentLoaded', () => {
@@ -289,20 +298,22 @@ window.addEventListener('scroll', () => {
             parallaxBg.className = 'projects-parallax-bg';
             projectsSection.insertBefore(parallaxBg, projectsSection.firstChild);
             
-            window.addEventListener('scroll', () => {
-                const rect = projectsSection.getBoundingClientRect();
-                // التأكد إن القسم ظاهر في الشاشة عشان نوفر في الأداء
-                if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                    const scrollDistance = (window.innerHeight - rect.top) * 0.15; // سرعة الـ Parallax (15%)
-                    parallaxBg.style.transform = `translateY(${scrollDistance}px)`;
-                }
-            }, { passive: true });
+            if (!mobilePerformanceMode()) {
+                window.addEventListener('scroll', () => {
+                    const rect = projectsSection.getBoundingClientRect();
+                    // التأكد إن القسم ظاهر في الشاشة عشان نوفر في الأداء
+                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                        const scrollDistance = (window.innerHeight - rect.top) * 0.15; // سرعة الـ Parallax (15%)
+                        parallaxBg.style.transform = `translateY(${scrollDistance}px)`;
+                    }
+                }, { passive: true });
+            }
         }
     });
 
 // Floating Hero Img
 const heroProfileImg = document.querySelector('.hero-profile-img');
-if (heroProfileImg) {
+if (heroProfileImg && !mobilePerformanceMode()) {
     document.addEventListener('mousemove', (e) => {
         const rect = heroProfileImg.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -313,15 +324,17 @@ if (heroProfileImg) {
 }
 
 // Image Scroll Rotation
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('.about-img img, .hero-profile-img').forEach(img => {
-        const rect = img.getBoundingClientRect();
-        const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        if (scrollPercent > 0 && scrollPercent < 1) {
-            img.style.transform = `rotateZ(${(scrollPercent - 0.5) * 3}deg) scale(${0.98 + scrollPercent * 0.05})`;
-        }
-    });
-});
+if (!mobilePerformanceMode()) {
+    window.addEventListener('scroll', () => {
+        document.querySelectorAll('.about-img img, .hero-profile-img').forEach(img => {
+            const rect = img.getBoundingClientRect();
+            const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            if (scrollPercent > 0 && scrollPercent < 1) {
+                img.style.transform = `rotateZ(${(scrollPercent - 0.5) * 3}deg) scale(${0.98 + scrollPercent * 0.05})`;
+            }
+        });
+    }, { passive: true });
+}
 
 // Skill Tags Stagger
 document.addEventListener('DOMContentLoaded', () => {
@@ -619,7 +632,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         updateActiveSection();
-        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        if (!mobilePerformanceMode()) {
+            window.addEventListener('scroll', updateActiveSection, { passive: true });
+        }
         window.addEventListener('resize', updateActiveSection);
     }
 
@@ -729,12 +744,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================= Reading Progress Bar =================
     const readingProgress = document.getElementById('reading-progress');
     if (readingProgress) {
+        let readingProgressTicking = false;
         window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            // حساب النسبة المئوية للسكرول
-            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            readingProgress.style.width = `${scrollPercent}%`;
+            if (!readingProgressTicking) {
+                readingProgressTicking = true;
+                requestAnimationFrame(() => {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    // حساب النسبة المئوية للسكرول
+                    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                    readingProgress.style.width = `${scrollPercent}%`;
+                    readingProgressTicking = false;
+                });
+            }
         }, { passive: true });
     }
 
@@ -792,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ================= Custom Circuit Data Flow Background =================
     const canvas = document.getElementById('hero-particles');
-    if (canvas && !reduceMotion) {
+    if (canvas && !reduceMotion && !mobilePerformanceMode()) {
         const ctx = canvas.getContext('2d');
         
         let packets = [];
@@ -961,9 +983,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = clamp((value - start) / (end - start));
         return x * x * (3 - (2 * x));
     };
-    const sceneProgress = (section) => {
-        const rect = section.getBoundingClientRect();
-        const travel = Math.max(1, section.offsetHeight - window.innerHeight);
+    const sceneProgress = (section, rect) => {
+        const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+        const travel = Math.max(1, section.offsetHeight - viewportHeight);
         return clamp(-rect.top / travel);
     };
 
@@ -986,21 +1008,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileView = window.matchMedia('(max-width: 900px)');
         let ticking = false;
 
-        const updateLaptop = () => {
+        const updateLaptop = (rect) => {
             if (!laptopScene || !laptopCamera || reduceMotion.matches) return;
-            const p = sceneProgress(laptopScene);
+            const p = sceneProgress(laptopScene, rect);
             const open = smoothstep(0.04, 0.34, p);
             const story = smoothstep(0.25, 0.43, p) * (1 - smoothstep(0.70, 0.82, p));
             const approach = smoothstep(0.50, 0.88, p);
             const blackout = smoothstep(0.79, 0.94, p);
             const mobile = window.innerWidth <= 768;
             const startScale = mobile ? 0.72 : 0.58;
-            const openScale = mobile ? 0.28 : 0.42;
-            const zoomScale = mobile ? 2.15 : 1.35;
-            const y = ((1 - open) * (mobile ? 18 : 23)) - (approach * (mobile ? 1 : 4));
+            const openScale = mobile ? 0.26 : 0.42;
+            const zoomScale = mobile ? 0.75 : 1.35;
+            const y = ((1 - open) * (mobile ? 16 : 23)) - (approach * (mobile ? 1 : 4));
             const scale = startScale + (open * openScale) + (approach * zoomScale);
+            const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+            const yPixels = y * viewportHeight / 100;
 
-            laptopCamera.style.transform = 'translate3d(0,' + y + 'vh,0) scale(' + scale + ')';
+            laptopCamera.style.transform = 'translate3d(0,' + yPixels + 'px,0) scale(' + scale + ')';
             laptopLid.style.transform = 'rotateX(' + (86 * (1 - open)) + 'deg)';
             laptopScreen.style.opacity = String((0.16 + (0.84 * open)) * (1 - blackout));
             if (laptopContent) laptopContent.style.opacity = String(0.18 + (0.82 * story));
@@ -1011,7 +1035,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (laptopBlackout) laptopBlackout.style.opacity = String(blackout);
         };
 
-        const updateContact = () => {
+        const updateContact = (rect) => {
             if (!contactScene || !phone || !contactForm || reduceMotion.matches) return;
             if (mobileView.matches) {
                 phone.style.removeProperty('opacity');
@@ -1020,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contactForm.style.removeProperty('transform');
                 return;
             }
-            const p = sceneProgress(contactScene);
+            const p = sceneProgress(contactScene, rect);
             const phoneIn = smoothstep(0.02, 0.25, p);
             const formIn = smoothstep(0.29, 0.56, p);
             const phoneX = -8 * smoothstep(0.34, 0.68, p);
@@ -1035,8 +1059,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const update = () => {
             ticking = false;
-            updateLaptop();
-            updateContact();
+            const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+            if (laptopScene) {
+                const laptopRect = laptopScene.getBoundingClientRect();
+                if (laptopRect.bottom >= -viewportHeight && laptopRect.top <= viewportHeight * 2) {
+                    updateLaptop(laptopRect);
+                }
+            }
+            if (contactScene) {
+                const contactRect = contactScene.getBoundingClientRect();
+                if (contactRect.bottom >= -viewportHeight && contactRect.top <= viewportHeight * 2) {
+                    updateContact(contactRect);
+                }
+            }
         };
         const requestUpdate = () => {
             if (!ticking) {
