@@ -936,3 +936,109 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+// ================= Cinematic scroll chapters =================
+(function () {
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+    const smoothstep = (start, end, value) => {
+        const x = clamp((value - start) / (end - start));
+        return x * x * (3 - (2 * x));
+    };
+    const sceneProgress = (section) => {
+        const rect = section.getBoundingClientRect();
+        const travel = Math.max(1, section.offsetHeight - window.innerHeight);
+        return clamp(-rect.top / travel);
+    };
+
+    const initCinematicChapters = () => {
+        const laptopScene = document.querySelector('.laptop-scroll-scene');
+        const laptopCamera = laptopScene && laptopScene.querySelector('.laptop-camera');
+        const laptopLid = laptopScene && laptopScene.querySelector('.laptop-lid');
+        const laptopScreen = laptopScene && laptopScene.querySelector('.laptop-screen');
+        const laptopContent = laptopScene && laptopScene.querySelector('.laptop-screen-content');
+        const laptopCopy = laptopScene && laptopScene.querySelector('.laptop-chapter-copy');
+        const laptopBlackout = laptopScene && laptopScene.querySelector('.laptop-blackout');
+
+        const contactScene = document.querySelector('.contact-cinematic');
+        const phone = contactScene && contactScene.querySelector('.vintage-phone-camera');
+        const contactForm = contactScene && contactScene.querySelector('.contact-form-cinematic');
+
+        if (!laptopScene && !contactScene) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const mobileView = window.matchMedia('(max-width: 900px)');
+        let ticking = false;
+
+        const updateLaptop = () => {
+            if (!laptopScene || !laptopCamera || reduceMotion.matches) return;
+            const p = sceneProgress(laptopScene);
+            const open = smoothstep(0.04, 0.34, p);
+            const story = smoothstep(0.25, 0.43, p) * (1 - smoothstep(0.70, 0.82, p));
+            const approach = smoothstep(0.50, 0.88, p);
+            const blackout = smoothstep(0.79, 0.94, p);
+            const mobile = window.innerWidth <= 768;
+            const startScale = mobile ? 0.72 : 0.58;
+            const openScale = mobile ? 0.28 : 0.42;
+            const zoomScale = mobile ? 3.75 : 5.65;
+            const y = ((1 - open) * (mobile ? 18 : 23)) - (approach * (mobile ? 1 : 4));
+            const scale = startScale + (open * openScale) + (approach * zoomScale);
+
+            laptopCamera.style.transform = 'translate3d(0,' + y + 'vh,0) scale(' + scale + ')';
+            laptopLid.style.transform = 'rotateX(' + (86 * (1 - open)) + 'deg)';
+            laptopScreen.style.opacity = String((0.16 + (0.84 * open)) * (1 - blackout));
+            if (laptopContent) laptopContent.style.opacity = String(0.18 + (0.82 * story));
+            if (laptopCopy) {
+                laptopCopy.style.opacity = String((1 - smoothstep(0.16, 0.34, p)) * (1 - blackout));
+                laptopCopy.style.transform = 'translate3d(0,' + (-28 * smoothstep(0.12, 0.34, p)) + 'px,0)';
+            }
+            if (laptopBlackout) laptopBlackout.style.opacity = String(blackout);
+        };
+
+        const updateContact = () => {
+            if (!contactScene || !phone || !contactForm || reduceMotion.matches) return;
+            if (mobileView.matches) {
+                phone.style.removeProperty('opacity');
+                phone.style.removeProperty('transform');
+                contactForm.style.removeProperty('opacity');
+                contactForm.style.removeProperty('transform');
+                return;
+            }
+            const p = sceneProgress(contactScene);
+            const phoneIn = smoothstep(0.02, 0.25, p);
+            const formIn = smoothstep(0.29, 0.56, p);
+            const phoneX = -8 * smoothstep(0.34, 0.68, p);
+            const phoneY = (1 - phoneIn) * 16;
+            const phoneScale = 0.68 + (0.34 * phoneIn) - (0.08 * smoothstep(0.62, 0.9, p));
+
+            phone.style.opacity = String(phoneIn);
+            phone.style.transform = 'translate3d(' + phoneX + 'vw,' + phoneY + 'vh,0) rotate(' + (-8 + (6 * phoneIn)) + 'deg) scale(' + phoneScale + ')';
+            contactForm.style.opacity = String(formIn);
+            contactForm.style.transform = 'translate3d(' + ((1 - formIn) * 130) + 'px,0,0)';
+        };
+
+        const update = () => {
+            ticking = false;
+            updateLaptop();
+            updateContact();
+        };
+        const requestUpdate = () => {
+            if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(update);
+            }
+        };
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate, { passive: true });
+        reduceMotion.addEventListener && reduceMotion.addEventListener('change', requestUpdate);
+        mobileView.addEventListener && mobileView.addEventListener('change', requestUpdate);
+        requestUpdate();
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCinematicChapters, { once: true });
+    } else {
+        initCinematicChapters();
+    }
+})();
