@@ -423,7 +423,19 @@ const projectsData = {
             "Installable PWA with Service Worker caching, offline Quran data, and persistent settings.",
             "Responsive glassmorphism interface built mobile-first with accessible light and dark themes."
         ],
-        images: ['images/iqraa-showcase.webp'],
+        images: [
+            'images/iqraa-hero.webp',
+            'images/iqraa-02.webp',
+            'images/iqraa-03.webp',
+            'images/iqraa-04.webp',
+            'images/iqraa-05.webp',
+            'images/iqraa-06.webp',
+            'images/iqraa-07.webp',
+            'images/iqraa-08.webp',
+            'images/iqraa-09.webp',
+            'images/iqraa-10.webp',
+            'images/iqraa-01.webp'
+        ],
         github: "https://github.com/omararafa295-cmd/iqraa-quran-app",
         demo: "https://iqraa-app.vercel.app/"
     },
@@ -1023,7 +1035,6 @@ document.addEventListener('DOMContentLoaded', () => {
             laptopMedia.add('(max-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
                 gsapMobileLaptop = true;
                 ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
-
 
                 const screenFocus = () => {
                     let offsetY = 0;
