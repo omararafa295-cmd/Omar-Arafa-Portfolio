@@ -1013,9 +1013,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let gsapMobileLaptop = false;
         let ticking = false;
 
-        // Touch momentum can skip large parts of a direct scroll-to-progress mapping.
-        // A single scrubbed timeline keeps the whole mobile chapter in sequence and
-        // lets ScrollTrigger refresh its measurements when the viewport changes.
+        // Keep the mobile chapter tied directly to native scroll. ScrollTrigger owns
+        // only the animation progress; the browser keeps its normal touch momentum.
         if (laptopScene && laptopSticky && laptopCamera && laptopLid && laptopScreen
             && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
@@ -1025,12 +1024,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsapMobileLaptop = true;
                 ScrollTrigger.config({ ignoreMobileResize: true, limitCallbacks: true });
 
-                const normalizer = ScrollTrigger.normalizeScroll({
-                    allowNestedScroll: true,
-                    lockAxis: true,
-                    momentum: (self) => Math.min(1.15, Math.max(0.45, Math.abs(self.velocityY) / 1600)),
-                    type: 'touch,wheel'
-                });
 
                 const screenFocus = () => {
                     let offsetY = 0;
@@ -1070,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         trigger: laptopScene,
                         start: 'top top',
                         end: 'bottom bottom',
-                        scrub: 0.6,
+                        scrub: true,
                         invalidateOnRefresh: true,
                         fastScrollEnd: false
                     }
@@ -1100,7 +1093,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 return () => {
                     gsapMobileLaptop = false;
-                    if (normalizer) ScrollTrigger.normalizeScroll(false);
                 };
             });
         }
