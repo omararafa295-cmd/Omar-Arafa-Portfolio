@@ -352,8 +352,29 @@ document.addEventListener('DOMContentLoaded', () => {
 const projectsData = {
     'xero': {
         title: "Xero Office\nE-Commerce",
+        type: "Commerce Platform",
         tags: ['<i class="fab fa-laravel"></i> Laravel', 'TailwindCSS', '<i class="fas fa-database"></i> MySQL'],
         description: "A comprehensive, high-performance e-commerce platform built from scratch. It features a modern storefront for customers and an advanced data-driven control panel for administrators, ensuring a seamless shopping experience and efficient store management.",
+        meta: {
+            "Role": "Full-Stack Development",
+            "Product": "E-Commerce Platform",
+            "Year": "2026",
+            "Focus": "Commerce & Analytics"
+        },
+        story: [
+            {
+                title: "The challenge",
+                text: "Bring the storefront, checkout, inventory, order operations, and business insights into one product without making either the customer or admin experience feel complicated."
+            },
+            {
+                title: "The approach",
+                text: "I built a Laravel and MySQL foundation, then designed the customer journey and admin workflows as one connected system with secure authentication, automated email, and live analytics."
+            },
+            {
+                title: "The outcome",
+                text: "A complete commerce workflow that moves from product discovery to fulfilment, while giving administrators a clear view of sales, stock, customers, and orders."
+            }
+        ],
         features: [
             "<strong>Google OAuth 2.0 Integration:</strong> Quick and secure user authentication and registration via Google accounts.",
             "<strong>Automated SMTP Emails:</strong> Custom HTML/CSS email notifications sent automatically upon order placement, shipping, and delivery.",
@@ -380,48 +401,119 @@ const projectsData = {
     'images/x10.png',
     'images/x11.png'
 ],
+        galleryLabels: [
+            "Storefront overview", "Mobile shopping", "Mobile product view", "Product discovery",
+            "Commerce interface", "Catalogue experience", "Product details", "Admin overview",
+            "Analytics dashboard", "Order management", "Inventory workflow", "Customer insights",
+            "Responsive checkout", "System overview"
+        ],
         github: "https://github.com/omararafa295-cmd/xero-office-ecommerce",
         demo: "#"
     },
     'pacman': {
         title: "Search in Pacman",
+        type: "AI Search Project",
         tags: ['<i class="fab fa-python"></i> Python', '<i class="fas fa-brain"></i> AI', 'Algorithms'],
         description: "Implemented classic Artificial Intelligence search algorithms to navigate Pacman through complex mazes, optimizing paths to collect all dots efficiently.",
+        meta: {
+            "Role": "Algorithm Engineering",
+            "Product": "AI Search Project",
+            "Context": "Academic Project",
+            "Focus": "Pathfinding & Heuristics"
+        },
+        story: [
+            {
+                title: "The challenge",
+                text: "Find reliable paths through maze environments while comparing how different search strategies trade speed, memory, and solution quality."
+            },
+            {
+                title: "The approach",
+                text: "I implemented uninformed and informed search algorithms in Python, then designed custom heuristics to improve how Pacman evaluates complex routes."
+            },
+            {
+                title: "The outcome",
+                text: "A practical comparison of DFS, BFS, and A* that demonstrates algorithm behaviour visually and produces efficient solutions across multiple maze layouts."
+            }
+        ],
         features: [
-            "Depth-First Search (DFS) Implementation",
-            "Breadth-First Search (BFS) Implementation",
-            "A* Search Algorithm with Custom Heuristics",
-            "Optimized pathfinding strategies for dynamic mazes"
+            "<strong>Depth-First Search:</strong> Implemented DFS exploration with stack-based traversal for maze navigation.",
+            "<strong>Breadth-First Search:</strong> Added BFS to find shortest unweighted paths through the search space.",
+            "<strong>A* with custom heuristics:</strong> Combined path cost and informed estimates to guide efficient search.",
+            "<strong>Optimised pathfinding:</strong> Compared strategies across dynamic maze layouts and multi-goal scenarios."
         ],
         images: ['images/pacman3.png','images/pacman2.png','images/pacman1.png'], 
+        galleryLabels: ["Search environment", "Algorithm in motion", "Solved maze"],
         github: "https://github.com/omararafa295-cmd/Pacman-Search-AI",
         demo: null 
     },
     'simple-blog': {
         title: "Simple Blog",
+        type: "Publishing Platform",
         tags: ['<i class="fab fa-laravel"></i> Laravel', 'MySQL', 'Bootstrap'],
         description: "A simple blog application built with Laravel, featuring a clean and modern design. It allows users to read, create, and manage blog posts efficiently.",
+        meta: {
+            "Role": "Full-Stack Development",
+            "Product": "Publishing Platform",
+            "Context": "Training Project",
+            "Focus": "Laravel CRUD & Auth"
+        },
+        story: [
+            {
+                title: "The challenge",
+                text: "Turn a basic content idea into a structured publishing workflow where visitors can read freely and authorised users can manage posts safely."
+            },
+            {
+                title: "The approach",
+                text: "I used Laravel conventions for routing, authentication, validation, relationships, and CRUD operations, then built a responsive Bootstrap interface around them."
+            },
+            {
+                title: "The outcome",
+                text: "A focused full-stack application with a clear separation between the public reading experience and the secure content-management workflow."
+            }
+        ],
         features: [
-            "User Authentication & Authorization",
-            "Create, Read, Update, Delete (CRUD) for posts",
-            "Responsive UI using Bootstrap",
-            "Database relationship management"
+            "<strong>Authentication & authorisation:</strong> Protected publishing actions and user-specific access rules.",
+            "<strong>Complete post workflow:</strong> Create, read, update, and delete posts through a clean interface.",
+            "<strong>Responsive Bootstrap UI:</strong> Consistent reading and editing experience across screen sizes.",
+            "<strong>Relational data model:</strong> Structured users and posts with Laravel and MySQL relationships."
         ],
         images: ['images/blog1.png', 'images/blog4.png', 'images/blog3.png', 'images/blog2.png'], 
+        galleryLabels: ["Posts overview", "User dashboard", "Article view", "Create & edit"],
         github: "https://github.com/omararafa295-cmd/laravel-blog",
         demo: null
     },
     'iqraa': {
         title: "Iqraa Islamic PWA",
+        type: "Progressive Web App",
         tags: ['<i class="fab fa-react"></i> React 19', 'Tailwind CSS', 'PWA', 'REST APIs'],
         description: "A bilingual, mobile-first Islamic Progressive Web App that brings Quran reading and audio, smart search, prayer times, Qibla, adhkar, hadith, radio, Hijri calendar, bookmarks, and offline access into one polished experience.",
+        meta: {
+            "Role": "Product & Frontend",
+            "Product": "Islamic Progressive Web App",
+            "Year": "2026",
+            "Focus": "Accessible Daily Worship"
+        },
+        story: [
+            {
+                title: "The challenge",
+                text: "Daily Islamic services are often fragmented across separate apps. The goal was to make Quran, audio, prayer, Qibla, adhkar, and discovery feel like one calm experience."
+            },
+            {
+                title: "The approach",
+                text: "I designed a bilingual React PWA around mobile reading, clear navigation, persistent preferences, API-driven content, and reliable offline access."
+            },
+            {
+                title: "The outcome",
+                text: "One installable product that supports daily worship and learning across devices, with accessible themes, Arabic and English layouts, and a unified content experience."
+            }
+        ],
         features: [
-            "Arabic and English interface with automatic RTL and LTR layout support.",
-            "Quran reading, smart Arabic search, bookmarks, last-reading persistence, and multiple tafsir sources.",
-            "Audio library with 14 reciters, a floating player, offline downloads, and resumable progress.",
-            "Prayer times, location-aware Qibla, adhkar, hadith, Quran radio, and a combined Hijri and Gregorian calendar.",
-            "Installable PWA with Service Worker caching, offline Quran data, and persistent settings.",
-            "Responsive glassmorphism interface built mobile-first with accessible light and dark themes."
+            "<strong>Bilingual by design:</strong> Arabic and English interfaces with automatic RTL and LTR layout support.",
+            "<strong>Deep Quran experience:</strong> Reading, smart Arabic search, bookmarks, last-reading persistence, and multiple tafsir sources.",
+            "<strong>Rich audio library:</strong> 14 reciters, a floating player, offline downloads, and resumable progress.",
+            "<strong>Daily worship toolkit:</strong> Prayer times, location-aware Qibla, adhkar, hadith, Quran radio, and Hijri calendar.",
+            "<strong>Reliable PWA:</strong> Service Worker caching, offline Quran data, installation, and persistent settings.",
+            "<strong>Accessible interface:</strong> Mobile-first glassmorphism UI with carefully designed light and dark themes."
         ],
         images: [
             'images/iqraa-hero.webp',
@@ -436,6 +528,11 @@ const projectsData = {
             'images/iqraa-10.webp',
             'images/iqraa-01.webp'
         ],
+        galleryLabels: [
+            "Experience overview", "Home experience", "Quran reading", "Tafsir & bookmarks",
+            "Ayah card", "Audio & recitation", "Search & calendar", "Prayer & Qibla",
+            "Quran radio", "Hadith & Azkar", "Brand cover"
+        ],
         github: "https://github.com/omararafa295-cmd/iqraa-quran-app",
         demo: "https://iqraa-app.vercel.app/"
     },
@@ -443,163 +540,221 @@ const projectsData = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (window.location.href.includes('project.html')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const projectId = urlParams.get('id');
-        const project = projectsData[projectId];
+    if (!window.location.pathname.includes('project.html')) return;
 
-        if(project) {
-            const projectHeader = document.querySelector('.project-page-header');
-            if (projectHeader && project.images && project.images.length) {
-                const heroImageUrl = new URL(project.images[0], window.location.href).href;
-                projectHeader.style.setProperty('--project-hero-image', `url("${heroImageUrl}")`);
-                const existingVisual = projectHeader.querySelector('.project-hero-visual');
-                if (!existingVisual) {
-                    const visual = document.createElement('div');
-                    visual.className = 'project-hero-visual';
-                    visual.innerHTML = `<img src="${heroImageUrl}" alt="${project.title} screenshot">`;
-                    projectHeader.insertBefore(visual, document.getElementById('page-links'));
-                }
-            }
+    const projectId = new URLSearchParams(window.location.search).get('id');
+    const project = projectsData[projectId];
 
-            document.getElementById('page-title').innerText = project.title;
-            document.getElementById('page-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-            document.getElementById('page-desc').innerText = project.description;
-            
-            const featuresHtml = project.features.map(f => `
-                <div class="feature-card">
-                    <i class="fas fa-check-circle"></i>
-                    <span>${f}</span>
-                </div>
-            `).join('');
-            document.getElementById('page-features').innerHTML = featuresHtml;
-            
-            let linksHtml = '';
-            if(project.demo) {
-                linksHtml += `<a href="${project.demo}" target="_blank" class="modal-btn primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>`;
-            }
-            if(project.github) {
-                linksHtml += `<a href="${project.github}" target="_blank" class="modal-btn secondary"><i class="fab fa-github"></i> View Code</a>`;
-            }
-            document.getElementById('page-links').innerHTML = linksHtml;
-            
-            let galleryHtml = '';
-            if (project.images && project.images.length > 0) {
-                // ناخد أول 3 صور للمعاينة جوه الفولدر ونعكسهم عشان الطبقات (z-index)
-                const previewImages = project.images.slice(0, 3).reverse().map((img, index) => {
-                    return `<img src="${img}" alt="Preview" class="folder-preview-img stack-${index}" loading="lazy">`;
-                }).join('');
-                
-                galleryHtml = `
-                    <div class="gallery-folder" id="gallery-folder-btn" title="Click to view all ${project.images.length} images">
-                        <div class="folder-back"></div>
-                        <div class="folder-images">
-                            ${previewImages}
-                        </div>
-                        <div class="folder-front">
-                            <i class="far fa-images"></i>
-                            <span>Gallery (${project.images.length})</span>
-                        </div>
-                    </div>
-                `;
-            }
-            const galleryContainer = document.getElementById('page-gallery');
-            galleryContainer.className = 'project-folder-wrapper hidden-slide-up';
-            galleryContainer.innerHTML = galleryHtml;
-
-            setTimeout(() => {
-                document.querySelectorAll('.hidden-fade, .hidden-slide-left, .hidden-slide-up').forEach(el => el.classList.add('show'));
-            }, 100);
-
-            // ================= Next Project Section =================
-            const projectKeys = Object.keys(projectsData);
-            const currentIndex = projectKeys.indexOf(projectId);
-            if (currentIndex !== -1) {
-                // بنجيب المشروع اللي بعده، ولو إحنا في آخر مشروع، بنرجع للأول أوتوماتيك
-                const nextIndex = (currentIndex + 1) % projectKeys.length;
-                const nextProjectKey = projectKeys[nextIndex];
-                const nextProject = projectsData[nextProjectKey];
-                
-                const nextProjectLink = document.createElement('a');
-                nextProjectLink.href = `project.html?id=${nextProjectKey}`;
-                nextProjectLink.className = 'next-project-section hidden-fade';
-                nextProjectLink.innerHTML = `
-                    <p class="next-project-subtitle">Next Project</p>
-                    <h2 class="next-project-title">${nextProject.title.replace(/\n/g, ' ')}</h2>
-                `;
-                
-                const footer = document.querySelector('.premium-footer');
-                if (footer) {
-                    footer.parentNode.insertBefore(nextProjectLink, footer);
-                    if (typeof observer !== 'undefined') observer.observe(nextProjectLink);
-                }
-            }
-
-            // ================= Fullscreen Image Lightbox =================
-            setTimeout(() => {
-                // سحب كل صور المشروع مباشرة من الداتا بيز
-                const allImages = project.images.map(src => ({ src: src }));
-
-                if (allImages.length > 0) {
-                    const lightbox = document.createElement('div');
-                    lightbox.className = 'lightbox-overlay';
-                    lightbox.innerHTML = `
-                        <button class="lightbox-btn lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
-                        <button class="lightbox-btn lightbox-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-                        <div class="lightbox-content">
-                            <img src="" alt="Enlarged Project Image" class="lightbox-img">
-                        </div>
-                        <button class="lightbox-btn lightbox-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
-                    `;
-                    document.body.appendChild(lightbox);
-
-                    const lbImg = lightbox.querySelector('.lightbox-img');
-                    let currentIndex = 0;
-
-                    const openLightbox = (index) => {
-                        currentIndex = index;
-                        lbImg.src = allImages[currentIndex].src;
-                        lightbox.classList.add('active');
-                        if(typeof lenis !== 'undefined') lenis.stop(); // وقف السكرول
-                        document.body.style.overflow = 'hidden';
-                    };
-
-                    const closeLightbox = () => {
-                        lightbox.classList.remove('active');
-                        if(typeof lenis !== 'undefined') lenis.start(); // شغل السكرول تاني
-                        document.body.style.overflow = '';
-                        setTimeout(() => lbImg.src = '', 400); 
-                    };
-
-                    const navigateLB = (dir, e) => {
-                        if(e) e.stopPropagation();
-                        currentIndex = (currentIndex + dir + allImages.length) % allImages.length;
-                        lbImg.src = allImages[currentIndex].src;
-                    };
-
-                    // ربط الفولدر بفتح أول صورة
-                    const folderBtn = document.getElementById('gallery-folder-btn');
-                    if (folderBtn) {
-                        folderBtn.addEventListener('click', () => openLightbox(0));
-                    }
-                    // ربط الصورة الرئيسية (الهيرو) لو موجودة
-                    const heroImg = document.querySelector('.project-hero-visual img');
-                    if (heroImg) {
-                        heroImg.style.cursor = 'zoom-in';
-                        heroImg.addEventListener('click', () => openLightbox(0));
-                    }
-
-                    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-                    lightbox.querySelector('.lightbox-prev').addEventListener('click', (e) => navigateLB(-1, e));
-                    lightbox.querySelector('.lightbox-next').addEventListener('click', (e) => navigateLB(1, e));
-                    lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox(); });
-                    document.addEventListener('keydown', (e) => { if (lightbox.classList.contains('active')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowLeft') navigateLB(-1); if (e.key === 'ArrowRight') navigateLB(1); } });
-                }
-            }, 300);
-        } else {
-            window.location.href = 'index.html';
-        }
+    if (!project) {
+        window.location.href = 'projects.html';
+        return;
     }
+
+    const projectKeys = Object.keys(projectsData);
+    const projectIndex = projectKeys.indexOf(projectId);
+    const images = project.images || [];
+    const labels = images.map((_, index) => project.galleryLabels?.[index] || `Product screen ${String(index + 1).padStart(2, '0')}`);
+    const cleanTitle = project.title.replace(/\n/g, ' ');
+    const padNumber = number => String(number).padStart(2, '0');
+
+    document.title = `${cleanTitle} | Omar Arafa`;
+    document.getElementById('case-project-index').textContent = padNumber(projectIndex + 1);
+    document.getElementById('page-title').innerText = project.title;
+    document.getElementById('page-desc').innerText = project.description;
+    document.getElementById('page-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    document.getElementById('case-media-label').textContent = `${projectId.replace(/-/g, '_')} / CASE STUDY`;
+    document.getElementById('case-media-type').textContent = project.type || 'DIGITAL PRODUCT';
+
+    const links = [];
+    if (project.demo && project.demo !== '#') {
+        links.push(`<a href="${project.demo}" target="_blank" rel="noreferrer" class="case-action primary"><i class="fas fa-arrow-up-right-from-square"></i> Live Product</a>`);
+    }
+    if (project.github) {
+        links.push(`<a href="${project.github}" target="_blank" rel="noreferrer" class="case-action secondary"><i class="fab fa-github"></i> View Code</a>`);
+    }
+    document.getElementById('page-links').innerHTML = links.join('');
+
+    document.getElementById('page-meta').innerHTML = Object.entries(project.meta || {}).map(([label, value]) => `
+        <div>
+            <dt>${label}</dt>
+            <dd>${value}</dd>
+        </div>
+    `).join('');
+
+    document.getElementById('page-story').innerHTML = (project.story || []).map((item, index) => `
+        <article class="case-story-card hidden-slide-up" data-number="${padNumber(index + 1)}">
+            <span>${padNumber(index + 1)}</span>
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+        </article>
+    `).join('');
+
+    document.getElementById('page-features').innerHTML = project.features.map((feature, index) => `
+        <article class="case-feature-item hidden-slide-up">
+            <span class="case-feature-number">${padNumber(index + 1)}</span>
+            <div class="case-feature-copy">${feature}</div>
+            <span class="case-feature-icon"><i class="fas fa-arrow-right"></i></span>
+        </article>
+    `).join('');
+
+    const heroImage = document.getElementById('case-hero-image');
+    const galleryImage = document.getElementById('case-gallery-image');
+    const galleryMain = document.getElementById('case-gallery-open');
+    const galleryCaption = document.getElementById('case-gallery-caption');
+    const galleryCounter = document.getElementById('case-gallery-counter');
+    const galleryLabel = document.getElementById('case-gallery-label');
+    const galleryThumbs = document.getElementById('case-gallery-thumbs');
+    const totalText = padNumber(images.length);
+    let activeImage = 0;
+    let switchTimer;
+
+    document.getElementById('case-gallery-total').textContent = totalText;
+    heroImage.src = images[0] || '';
+    heroImage.alt = `${cleanTitle} product overview`;
+
+    galleryThumbs.innerHTML = images.map((src, index) => `
+        <button class="case-gallery-thumb${index === 0 ? ' is-active' : ''}" type="button" data-gallery-index="${index}" aria-label="View ${labels[index]}">
+            <img src="${src}" alt="${cleanTitle} — ${labels[index]}" loading="lazy" decoding="async">
+            <span>${padNumber(index + 1)}</span>
+        </button>
+    `).join('');
+
+    const updateGallery = (nextIndex, immediate = false) => {
+        if (!images.length) return;
+        activeImage = (nextIndex + images.length) % images.length;
+        const commit = () => {
+            galleryImage.src = images[activeImage];
+            galleryImage.alt = `${cleanTitle} — ${labels[activeImage]}`;
+            galleryCaption.textContent = labels[activeImage];
+            galleryCounter.textContent = `${padNumber(activeImage + 1)} / ${totalText}`;
+            galleryLabel.textContent = `PROJECT VIEW / ${padNumber(activeImage + 1)}`;
+            galleryThumbs.querySelectorAll('.case-gallery-thumb').forEach((button, index) => {
+                button.classList.toggle('is-active', index === activeImage);
+                button.setAttribute('aria-current', index === activeImage ? 'true' : 'false');
+            });
+            galleryMain.classList.remove('is-switching');
+        };
+
+        clearTimeout(switchTimer);
+        if (immediate || reducedMotionMode()) {
+            commit();
+        } else {
+            galleryMain.classList.add('is-switching');
+            switchTimer = setTimeout(commit, 130);
+        }
+    };
+
+    updateGallery(0, true);
+    galleryThumbs.addEventListener('click', event => {
+        const button = event.target.closest('[data-gallery-index]');
+        if (button) updateGallery(Number(button.dataset.galleryIndex));
+    });
+    document.getElementById('case-gallery-prev').addEventListener('click', () => updateGallery(activeImage - 1));
+    document.getElementById('case-gallery-next').addEventListener('click', () => updateGallery(activeImage + 1));
+
+    if (images.length > 1 && window.matchMedia('(min-width: 981px)').matches) {
+        const thumbObserver = new IntersectionObserver(entries => {
+            const activeEntry = entries.find(entry => entry.isIntersecting);
+            if (activeEntry) updateGallery(Number(activeEntry.target.dataset.galleryIndex));
+        }, { rootMargin: '-42% 0px -42% 0px', threshold: 0 });
+        galleryThumbs.querySelectorAll('.case-gallery-thumb').forEach(button => thumbObserver.observe(button));
+    }
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'case-lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', `${cleanTitle} gallery`);
+    lightbox.innerHTML = `
+        <div class="case-lightbox-bar">
+            <span>${cleanTitle}</span>
+            <button class="case-lightbox-close" type="button" aria-label="Close gallery"><i class="fas fa-xmark"></i></button>
+        </div>
+        <div class="case-lightbox-stage">
+            <button class="case-lightbox-nav case-lightbox-prev" type="button" aria-label="Previous image"><i class="fas fa-arrow-left"></i></button>
+            <img src="" alt="">
+            <button class="case-lightbox-nav case-lightbox-next" type="button" aria-label="Next image"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="case-lightbox-footer">
+            <span class="case-lightbox-caption"></span>
+            <span class="case-lightbox-counter"></span>
+        </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    const lightboxImage = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.case-lightbox-caption');
+    const lightboxCounter = lightbox.querySelector('.case-lightbox-counter');
+    let lightboxIndex = 0;
+    let touchStartX = 0;
+
+    const updateLightbox = index => {
+        if (!images.length) return;
+        lightboxIndex = (index + images.length) % images.length;
+        lightboxImage.src = images[lightboxIndex];
+        lightboxImage.alt = `${cleanTitle} — ${labels[lightboxIndex]}`;
+        lightboxCaption.textContent = labels[lightboxIndex];
+        lightboxCounter.textContent = `${padNumber(lightboxIndex + 1)} / ${totalText}`;
+    };
+    const openLightbox = index => {
+        updateLightbox(index);
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        if (lenis) lenis.stop();
+        lightbox.querySelector('.case-lightbox-close').focus();
+    };
+    const closeLightbox = () => {
+        lightbox.classList.remove('is-open');
+        document.body.style.overflow = '';
+        if (lenis) lenis.start();
+    };
+
+    document.getElementById('case-hero-open').addEventListener('click', () => openLightbox(0));
+    galleryMain.addEventListener('click', () => openLightbox(activeImage));
+    lightbox.querySelector('.case-lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.querySelector('.case-lightbox-prev').addEventListener('click', () => updateLightbox(lightboxIndex - 1));
+    lightbox.querySelector('.case-lightbox-next').addEventListener('click', () => updateLightbox(lightboxIndex + 1));
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+    lightbox.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', event => {
+        const distance = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(distance) > 45) updateLightbox(lightboxIndex + (distance < 0 ? 1 : -1));
+    }, { passive: true });
+    document.addEventListener('keydown', event => {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowLeft') updateLightbox(lightboxIndex - 1);
+        if (event.key === 'ArrowRight') updateLightbox(lightboxIndex + 1);
+    });
+
+    const nextProjectKey = projectKeys[(projectIndex + 1) % projectKeys.length];
+    const nextProject = projectsData[nextProjectKey];
+    const nextProjectLink = document.createElement('a');
+    nextProjectLink.href = `project.html?id=${nextProjectKey}`;
+    nextProjectLink.className = 'case-next-project hidden-fade';
+    nextProjectLink.innerHTML = `
+        <div class="case-next-copy">
+            <p>Next case study / ${padNumber(((projectIndex + 1) % projectKeys.length) + 1)}</p>
+            <h2>${nextProject.title.replace(/\n/g, '<br>')}</h2>
+            <span>Explore project <i class="fas fa-arrow-right"></i></span>
+        </div>
+        <div class="case-next-visual">
+            <img src="${nextProject.images[0]}" alt="${nextProject.title.replace(/\n/g, ' ')} preview" loading="lazy" decoding="async">
+        </div>
+    `;
+    const footer = document.querySelector('.premium-footer');
+    footer?.parentNode.insertBefore(nextProjectLink, footer);
+
+    images.slice(1, 4).forEach(src => {
+        const preloadImage = new Image();
+        preloadImage.src = src;
+    });
+
+    requestAnimationFrame(() => {
+        document.querySelectorAll('.case-study-page .hidden-fade, .case-study-page .hidden-slide-left, .case-study-page .hidden-slide-right, .case-study-page .hidden-slide-up, .case-next-project').forEach((element, index) => {
+            setTimeout(() => element.classList.add('show'), Math.min(index * 35, 280));
+        });
+    });
 });
 
 /* ✨ ANIMATION ADDED: premium interaction layer */
