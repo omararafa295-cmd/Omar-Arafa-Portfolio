@@ -1863,6 +1863,8 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .screen-profile-card small { font-size: .23rem; }
     .screen-profile-card strong { margin: 1px 0; font-size: .54rem; line-height: 1; }
     .screen-profile-card span { font-size: .23rem; }
+    .screen-profile-card img {
+            object-position: center top !important; }
     .laptop-statusbar { padding: 4px 7px; font-size: .25rem; line-height: 1.2; }
     .laptop-screen::after { display: none; }
     .laptop-screen-grid { opacity: .12; -webkit-mask-image: none; mask-image: none; }
