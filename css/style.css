@@ -55,13 +55,13 @@
 
 /* ================= Theme Customizer ================= */
 .theme-customizer {
-    position: fixed; right: -180px; top: 60%; transform: translateY(-50%);
+    position: fixed; right: 0; top: 60%; transform: translate(100%, -50%);
     background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border); border-right: none; border-radius: 12px 0 0 12px;
-    padding: 15px; z-index: 10000; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 15px; z-index: 10000; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex; align-items: center; gap: 15px; box-shadow: -5px 5px 20px rgba(0,0,0,0.1);
 }
-.theme-customizer.active { right: 0; }
+.theme-customizer.active { transform: translate(0, -50%); }
 .customizer-toggle {
     position: absolute; left: -45px; top: -1px;
     background: var(--nav-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -1841,8 +1841,8 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .premium-skill-grid { grid-template-columns: 1fr; gap: 16px; }
     .premium-skill-card, .premium-skill-card:last-child { grid-column: auto; min-height: 0; padding: 24px 20px; }
     .premium-skill-card h3 { font-size: 1.85rem; }
-    .laptop-scroll-scene { height: 225vh; overflow: clip; }
-    .laptop-sticky { overflow: clip; }
+    .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: clip; }
+    .laptop-sticky { height: 100vh; height: 100svh; overflow: clip; }
     .laptop-camera { width: min(97vw, 100%); }
     .laptop-device { filter: none; }
     .laptop-frame { padding: 7px; border-radius: 13px 13px 5px 5px; }
