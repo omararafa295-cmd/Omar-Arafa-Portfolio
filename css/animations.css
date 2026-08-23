@@ -224,10 +224,14 @@ body.intro-lock {
     .animated-img-container::after,
     .hero-profile-img,
     .pulse-ring,
-    .portrait-scan-line,
     .status-dot,
     .folder-icon {
         animation: none !important;
+    }
+
+    .portrait-scan-line {
+        animation: portraitScan 5.5s ease-in-out infinite !important;
+        will-change: transform, opacity;
     }
 
     .animated-img-container::after { filter: blur(10px); }

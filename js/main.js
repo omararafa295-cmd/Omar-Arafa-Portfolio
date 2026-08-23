@@ -1015,11 +1015,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const story = smoothstep(0.25, 0.43, p) * (1 - smoothstep(0.70, 0.82, p));
             const approach = smoothstep(0.50, 0.88, p);
             const blackout = smoothstep(0.79, 0.94, p);
-            const mobile = window.innerWidth <= 768;
-            const startScale = mobile ? 0.72 : 0.58;
-            const openScale = mobile ? 0.26 : 0.42;
-            const zoomScale = mobile ? 0.75 : 1.35;
-            const y = ((1 - open) * (mobile ? 16 : 23)) - (approach * (mobile ? 1 : 4));
+            // Keep the same cinematic choreography on desktop and mobile.
+            // Mobile still receives the lighter CSS filters from the performance pass.
+            const startScale = 0.58;
+            const openScale = 0.42;
+            const zoomScale = 1.35;
+            const y = ((1 - open) * 23) - (approach * 4);
             const scale = startScale + (open * openScale) + (approach * zoomScale);
             const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
             const yPixels = y * viewportHeight / 100;
