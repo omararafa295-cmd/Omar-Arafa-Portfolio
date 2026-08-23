@@ -1010,10 +1010,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const mobileView = window.matchMedia('(max-width: 900px)');
+        const nativeMobileLaptop = window.innerWidth <= 768
+            && typeof CSS !== 'undefined'
+            && CSS.supports('animation-timeline: view()');
         let ticking = false;
 
         const updateLaptop = (rect) => {
-            if (!laptopScene || !laptopCamera || reduceMotion.matches) return;
+            // Modern mobile Chrome runs this chapter entirely on a native view timeline.
+            // Keeping JavaScript out of the scrub removes event timing drift on touch scroll.
+            if (!laptopScene || !laptopCamera || reduceMotion.matches || nativeMobileLaptop) return;
             const p = sceneProgress(laptopScene, rect, laptopSticky);
             const mobile = window.innerWidth <= 768;
             const open = smoothstep(mobile ? 0.06 : 0.04, mobile ? 0.36 : 0.34, p);
