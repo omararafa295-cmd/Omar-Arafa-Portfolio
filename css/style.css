@@ -92,14 +92,25 @@
 
 /* ================= Reset & Base ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: auto; }
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+    scroll-behavior: auto;
+    overscroll-behavior-x: none;
+}
 body {
+    width: 100%;
+    max-width: 100%;
     font-family: var(--font-body);
     background-color: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.6;
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
+    overflow-x: clip;
+    touch-action: pan-y pinch-zoom;
     -webkit-font-smoothing: antialiased;
 }
 ul { list-style: none; }
@@ -1830,8 +1841,10 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .premium-skill-grid { grid-template-columns: 1fr; gap: 16px; }
     .premium-skill-card, .premium-skill-card:last-child { grid-column: auto; min-height: 0; padding: 24px 20px; }
     .premium-skill-card h3 { font-size: 1.85rem; }
-    .laptop-scroll-scene { height: 250vh; }
-    .laptop-camera { width: 97vw; }
+    .laptop-scroll-scene { height: 225vh; overflow: clip; }
+    .laptop-sticky { overflow: clip; }
+    .laptop-camera { width: min(97vw, 100%); }
+    .laptop-device { filter: none; }
     .laptop-frame { padding: 7px; border-radius: 13px 13px 5px 5px; }
     .laptop-toolbar { grid-template-columns: auto 1fr auto; gap: 8px; padding: 7px 8px; font-size: .39rem; }
     .laptop-toolbar > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
@@ -1847,6 +1860,9 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .screen-profile-card strong { margin-top: 2px; font-size: .62rem; line-height: 1; }
     .screen-profile-card span { font-size: .28rem; }
     .laptop-statusbar { padding: 5px 7px; font-size: .3rem; }
+    .laptop-screen::after { display: none; }
+    .laptop-screen-grid { opacity: .12; -webkit-mask-image: none; mask-image: none; }
+    .cinematic-ambient { filter: blur(22px); }
     .laptop-chapter-copy { top: 12%; }
     .laptop-chapter-copy h2 { font-size: clamp(2.8rem, 14vw, 4.8rem); }
     .laptop-chapter-copy p { font-size: .52rem; }
@@ -1867,9 +1883,11 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .all-projects-grid { grid-template-columns: minmax(0,1fr); gap: 20px; }
     .all-projects-grid .project-content { padding: 24px 20px 26px; }
 
-    .contact-cinematic { padding: 82px 4.5% 72px !important; }
-    .contact-cinematic-stage { gap: 58px; }
-    .vintage-phone-camera { width: min(620px, 105vw); margin-left: -2.5vw; }
+    .contact-cinematic { max-width: 100%; padding: 82px 4.5% 72px !important; overflow: clip; }
+    .contact-cinematic-stage { max-width: 100%; gap: 58px; }
+    .vintage-phone-camera { width: min(620px, 100%); max-width: 100%; margin-inline: auto; filter: none; will-change: auto; }
+    .vintage-phone-signal { filter: blur(18px); }
+    .vintage-phone-dial-pulse { animation: none; opacity: .3; }
     .vintage-phone-card {
         position: relative;
         right: auto;
@@ -1880,7 +1898,8 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     }
     .vintage-phone-actions { grid-column: 1 / -1; justify-content: flex-end; }
     .vintage-phone-card > img { width: 36px; }
-    .contact-form-cinematic { width: 100%; padding: 24px 17px; border-radius: 14px; }
+    .contact-form-cinematic { width: 100%; padding: 24px 17px; border-radius: 14px; backdrop-filter: none; -webkit-backdrop-filter: none; will-change: auto; }
+    .vintage-phone-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(6,8,13,.96); }
     .contact-form-heading h2 { font-size: clamp(2.8rem, 15vw, 4rem); }
     .contact-form-heading p { font-size: .91rem; }
     .contact-form-cinematic .form-group-row { grid-template-columns: 1fr; }
