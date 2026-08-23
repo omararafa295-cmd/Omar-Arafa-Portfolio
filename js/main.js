@@ -983,14 +983,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const x = clamp((value - start) / (end - start));
         return x * x * (3 - (2 * x));
     };
-    const sceneProgress = (section, rect) => {
-        const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
-        const travel = Math.max(1, section.offsetHeight - viewportHeight);
+    const sceneProgress = (section, rect, stickyElement) => {
+        // The sticky element is the real viewport for the scene. Using its height keeps
+        // progress stable when mobile browser chrome expands or collapses while scrolling.
+        const stickyHeight = stickyElement ? stickyElement.offsetHeight : (document.documentElement.clientHeight || window.innerHeight);
+        const travel = Math.max(1, section.offsetHeight - stickyHeight);
         return clamp(-rect.top / travel);
     };
 
     const initCinematicChapters = () => {
         const laptopScene = document.querySelector('.laptop-scroll-scene');
+        const laptopSticky = laptopScene && laptopScene.querySelector('.laptop-sticky');
         const laptopCamera = laptopScene && laptopScene.querySelector('.laptop-camera');
         const laptopLid = laptopScene && laptopScene.querySelector('.laptop-lid');
         const laptopScreen = laptopScene && laptopScene.querySelector('.laptop-screen');
@@ -999,6 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const laptopBlackout = laptopScene && laptopScene.querySelector('.laptop-blackout');
 
         const contactScene = document.querySelector('.contact-cinematic');
+        const contactSticky = contactScene && contactScene.querySelector('.contact-cinematic-sticky');
         const phone = contactScene && contactScene.querySelector('.vintage-phone-camera');
         const contactForm = contactScene && contactScene.querySelector('.contact-form-cinematic');
 
@@ -1010,17 +1014,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const updateLaptop = (rect) => {
             if (!laptopScene || !laptopCamera || reduceMotion.matches) return;
-            const p = sceneProgress(laptopScene, rect);
-            const open = smoothstep(0.04, 0.34, p);
-            const story = smoothstep(0.25, 0.43, p) * (1 - smoothstep(0.70, 0.82, p));
-            const approach = smoothstep(0.50, 0.88, p);
-            const blackout = smoothstep(0.79, 0.94, p);
-            // Keep the same cinematic choreography on desktop and mobile.
-            // Mobile still receives the lighter CSS filters from the performance pass.
+            const p = sceneProgress(laptopScene, rect, laptopSticky);
+            const mobile = window.innerWidth <= 768;
+            const open = smoothstep(mobile ? 0.06 : 0.04, mobile ? 0.36 : 0.34, p);
+            const story = smoothstep(mobile ? 0.27 : 0.25, mobile ? 0.41 : 0.43, p)
+                * (1 - smoothstep(mobile ? 0.82 : 0.70, mobile ? 0.92 : 0.82, p));
+            const approach = smoothstep(mobile ? 0.54 : 0.50, mobile ? 0.91 : 0.88, p);
+            const blackout = smoothstep(mobile ? 0.91 : 0.79, mobile ? 0.988 : 0.94, p);
             const startScale = 0.58;
             const openScale = 0.42;
-            const zoomScale = 1.35;
-            const y = ((1 - open) * 23) - (approach * 4);
+            const desktopFinalScale = 2.35;
+            const stickyHeight = laptopSticky ? laptopSticky.offsetHeight : (document.documentElement.clientHeight || window.innerHeight);
+            const screenHeight = Math.max(1, laptopScreen.offsetHeight);
+            // A portrait viewport needs more scale than desktop before the 16:9 screen
+            // fully covers it. This makes the zoom land inside the screen on every phone.
+            const mobileFinalScale = clamp((stickyHeight / screenHeight) * 1.08, 3.8, 5.4);
+            const finalScale = mobile ? mobileFinalScale : desktopFinalScale;
+            const zoomScale = finalScale - (startScale + openScale);
+            const y = ((1 - open) * (mobile ? 20 : 23)) - (approach * (mobile ? 2 : 4));
             const scale = startScale + (open * openScale) + (approach * zoomScale);
             const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
             const yPixels = y * viewportHeight / 100;
@@ -1030,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', () => {
             laptopScreen.style.opacity = String((0.16 + (0.84 * open)) * (1 - blackout));
             if (laptopContent) laptopContent.style.opacity = String(0.18 + (0.82 * story));
             if (laptopCopy) {
-                laptopCopy.style.opacity = String((1 - smoothstep(0.16, 0.34, p)) * (1 - blackout));
+                laptopCopy.style.opacity = String((1 - smoothstep(mobile ? 0.17 : 0.16, 0.34, p)) * (1 - blackout));
                 laptopCopy.style.transform = 'translate3d(0,' + (-28 * smoothstep(0.12, 0.34, p)) + 'px,0)';
             }
             if (laptopBlackout) laptopBlackout.style.opacity = String(blackout);
@@ -1045,7 +1056,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 contactForm.style.removeProperty('transform');
                 return;
             }
-            const p = sceneProgress(contactScene, rect);
+            const p = sceneProgress(contactScene, rect, contactSticky);
             const phoneIn = smoothstep(0.02, 0.25, p);
             const formIn = smoothstep(0.29, 0.56, p);
             const phoneX = -8 * smoothstep(0.34, 0.68, p);
