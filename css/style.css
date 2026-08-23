@@ -1841,9 +1841,9 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .premium-skill-grid { grid-template-columns: 1fr; gap: 16px; }
     .premium-skill-card, .premium-skill-card:last-child { grid-column: auto; min-height: 0; padding: 24px 20px; }
     .premium-skill-card h3 { font-size: 1.85rem; }
-    .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: clip; }
+    .laptop-scroll-scene { height: 360vh; height: 360svh; overflow: clip; touch-action: pan-y; }
     .laptop-sticky { height: 100vh; height: 100svh; overflow: clip; }
-    .laptop-camera { width: min(97vw, 100%); transform-origin: 50% 43%; }
+    .laptop-camera { width: min(94vw, 560px); transform-origin: 50% 43%; }
     .laptop-device { filter: none; }
     .laptop-frame { padding: 7px; border-radius: 13px 13px 5px 5px; }
     .laptop-toolbar { grid-template-columns: auto 1fr auto; gap: 8px; padding: 7px 8px; font-size: .39rem; }
@@ -1908,69 +1908,6 @@ h1, h2, h3, h4 { color: var(--text-primary); font-family: var(--font-display); l
     .contact-form-footer { align-items: stretch; flex-direction: column; }
     .contact-form-footer .btn { width: 100%; justify-content: center; }
     .contact-mini-links { justify-content: center; gap: 14px 18px; }
-}
-
-/* Native mobile scrub: the browser binds every frame directly to section progress. */
-@supports (animation-timeline: view()) {
-    @media screen and (max-width: 768px) {
-        .laptop-scroll-scene {
-            view-timeline-name: --mobile-laptop-chapter;
-            view-timeline-axis: block;
-        }
-
-        .laptop-camera,
-        .laptop-lid,
-        .laptop-screen,
-        .laptop-screen-content,
-        .laptop-chapter-copy,
-        .laptop-blackout {
-            animation-duration: 1ms;
-            animation-timing-function: linear;
-            animation-fill-mode: both;
-            animation-timeline: --mobile-laptop-chapter;
-            animation-range: contain 0% contain 100%;
-        }
-
-        .laptop-camera { animation-name: mobileLaptopCameraScrub; }
-        .laptop-lid { animation-name: mobileLaptopLidScrub; }
-        .laptop-screen { animation-name: mobileLaptopScreenScrub; }
-        .laptop-screen-content { animation-name: mobileLaptopContentScrub; }
-        .laptop-chapter-copy { animation-name: mobileLaptopCopyScrub; }
-        .laptop-blackout { animation-name: mobileLaptopBlackoutScrub; }
-    }
-
-    @keyframes mobileLaptopCameraScrub {
-        0%, 6% { transform: translate3d(0, 20svh, 0) scale(.58); }
-        36%, 54% { transform: translate3d(0, 0, 0) scale(1); }
-        91%, 100% { transform: translate3d(0, -2svh, 0) scale(5.2); }
-    }
-
-    @keyframes mobileLaptopLidScrub {
-        0%, 6% { transform: rotateX(86deg); }
-        36%, 100% { transform: rotateX(0deg); }
-    }
-
-    @keyframes mobileLaptopScreenScrub {
-        0% { opacity: .16; }
-        36%, 91% { opacity: 1; }
-        98.8%, 100% { opacity: 0; }
-    }
-
-    @keyframes mobileLaptopContentScrub {
-        0%, 27% { opacity: .18; }
-        41%, 82% { opacity: 1; }
-        92%, 100% { opacity: .18; }
-    }
-
-    @keyframes mobileLaptopCopyScrub {
-        0%, 17% { opacity: 1; transform: translate3d(0, 0, 0); }
-        34%, 100% { opacity: 0; transform: translate3d(0, -28px, 0); }
-    }
-
-    @keyframes mobileLaptopBlackoutScrub {
-        0%, 91% { opacity: 0; }
-        98.8%, 100% { opacity: 1; }
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
